@@ -11,25 +11,28 @@ struct MeshGenerator: View {
     @State var viewModel = MeshGeneratorViewModel()
     var body: some View {
         VStack {
-            MeshGradient(width: 3, height: 4, points: viewModel.points, colors: viewModel.colors)
-                .overlay {
-                    GeometryReader { geo in
-                        ZStack {
-                            ForEach(viewModel.overlayPoints.indices, id: \.self) { pointIndex in
-                                Circle()
-                                    .frame(width: 25, height: 25)
-                                    .position(x: viewModel.overlayPoints[pointIndex].x*geo.size.width, y: viewModel.overlayPoints[pointIndex].y*geo.size.height)
-                                    .gesture(
-                                        DragGesture()
-                                            .onChanged({ gesture in
-                                                viewModel.updatePoint(pointIndex, with: gesture.location, from: geo.size)
-                                            })
-                                    )
+            GeometryReader { geo in
+                MeshGradient(width: 3, height: 4, points: viewModel.points, colors: viewModel.colors)
+                    .overlay {
+                        GeometryReader { pointGeo in
+                            ZStack {
+                                ForEach(viewModel.overlayPoints.indices, id: \.self) { pointIndex in
+                                    Circle()
+                                        .frame(width: 25, height: 25)
+                                        .position(x: viewModel.overlayPoints[pointIndex].x*pointGeo.size.width, y: viewModel.overlayPoints[pointIndex].y*pointGeo.size.height)
+                                        .gesture(
+                                            DragGesture()
+                                                .onChanged({ gesture in
+                                                    viewModel.updatePoint(pointIndex, with: gesture.location, from: pointGeo.size)
+                                                })
+                                        )
+                                }
                             }
                         }
                     }
-                }
-                .scaleEffect(0.9)
+                    .aspectRatio(9/16, contentMode: .fit)
+                    .scaleEffect(0.9)
+            }
             HStack {
                 Button("Reset", action: viewModel.resetGradient)
                     .buttonStyle(.bordered)
