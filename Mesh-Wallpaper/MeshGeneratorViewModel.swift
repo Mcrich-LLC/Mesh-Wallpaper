@@ -8,15 +8,20 @@
 import Foundation
 import SwiftUI
 
-@Observable
-class MeshGeneratorViewModel {
+class MeshGeneratorViewModel: ObservableObject {
+    // Sheets
+    @Published var isShowingSettings = false
+    @Published var isShowingColorPicker = false
+    
     var points: [SIMD2<Float>] {
         overlayPoints.map({ [Float($0.x), Float($0.y)] })
     }
     
-    var point = CGPoint.zero
+    @Published var point = CGPoint.zero
     
-    var overlayPoints: [CGPoint] = originalOverlayPoints
+    @Published var overlayPoints: [CGPoint] = originalOverlayPoints
+    
+    @Published var isShowingPoints = true
     
     static let originalOverlayPoints: [CGPoint] = [
         .init(x: 0, y: 0), .init(x: 0.5, y: 0), .init(x: 1, y: 0),
@@ -24,7 +29,7 @@ class MeshGeneratorViewModel {
         .init(x: 0, y: 1), .init(x: 0.5, y: 1), .init(x: 1, y: 1),
     ]
     
-    var colors: [Color] = {
+    @Published var colors: [Color] = {
         var colors: [Color] = []
         
         while colors.count < 9 {
@@ -74,8 +79,8 @@ class MeshGeneratorViewModel {
     
     // MARK: Randomization
     
-    var shouldRandomizeColors = true
-    var shouldRandomizePoints = true
+    @Published var shouldRandomizeColors = true
+    @Published var shouldRandomizePoints = true
     
     func randomizeGradient() {
         withAnimation {
