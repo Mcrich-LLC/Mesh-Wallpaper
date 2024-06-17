@@ -25,6 +25,25 @@ struct SettingsView: View {
                     }
                     .pickerStyle(.menu)
                 }
+                HStack {
+                    Text("Aspect Ratio")
+                    Spacer()
+                    Picker("", selection: $meshViewModel.aspectRatio) {
+                        Section("Portrait") {
+                            ForEach(MeshGeneratorViewModel.aspectRatioOptions, id: \.self) { size in
+                                Text("\(Int(size.width))x\(Int(size.height))")
+                                    .tag(size)
+                            }
+                        }
+                        Section("Landscape") {
+                            ForEach(MeshGeneratorViewModel.aspectRatioOptions.map({ CGSize(width: $0.height, height: $0.width)} ), id: \.self) { size in
+                                Text("\(Int(size.width))x\(Int(size.height))")
+                                    .tag(size)
+                            }
+                        }
+                    }
+                    .pickerStyle(.menu)
+                }
             } header: {
                 HStack {
                     Text("Settings")

@@ -23,6 +23,15 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     }
     
     // MARK: Mesh Properties
+    @Published var aspectRatio = UIDevice.current.userInterfaceIdiom == .pad ? CGSize(width: 4, height: 3) : CGSize(width: 9, height: 16)
+    
+    static let aspectRatioOptions: [CGSize] = [
+        // Portrait Only, Landscape dynamically handled
+        .init(width: 9, height: 16),
+        .init(width: 3, height: 4),
+        .init(width: 2, height: 2),
+    ]
+    
     var points: [SIMD2<Float>] {
         overlayPoints.map({ [Float($0.x), Float($0.y)] })
     }
@@ -132,7 +141,7 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
                 .scaleEffect(0.8)
         }
         .preferredColorScheme(.dark)
-        .frame(width: 900, height: 1600)
+        .frame(width: aspectRatio.width*100, height: aspectRatio.height*100)
         .snapshot()
     }
     

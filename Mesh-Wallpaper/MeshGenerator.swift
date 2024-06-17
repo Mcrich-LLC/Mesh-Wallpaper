@@ -37,9 +37,9 @@ struct MeshGenerator: View {
                             }
                         }
                     }
-                    .aspectRatio(9/16, contentMode: .fit)
+                    .aspectRatio(viewModel.aspectRatio.width/viewModel.aspectRatio.height, contentMode: .fit)
                     .scaleEffect(0.9)
-                    .frame(maxWidth: .infinity, alignment: .center)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
             HStack {
                 Button {
@@ -89,7 +89,7 @@ struct MeshGenerator: View {
         }
         .sheet(isPresented: $viewModel.isShowingSettings) {
             SettingsView()
-                .presentationDetents([.fraction(0.25)])
+                .presentationDetents([.fraction(0.3)])
         }
         .sheet(isPresented: $viewModel.isShowingColorPicker) {
             MultiColorPickerView()
