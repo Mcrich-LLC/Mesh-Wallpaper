@@ -11,7 +11,8 @@ import SwiftUI
 struct Mesh_WallpaperApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MeshGenerator()
+                .preferredColorScheme(.dark)
         }
     }
 }
