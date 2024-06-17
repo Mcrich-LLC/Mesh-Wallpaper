@@ -90,6 +90,8 @@ struct MeshGenerator: View {
         })
         .alert("Success", isPresented: $viewModel.isShowingSaveSuccessAlert, actions: {
             Button("Done") {}
+        }, message: {
+            Text("You image has been saved to Photos")
         })
         .onChange(of: viewModel.overlayPoints, {
             viewModel.generateMeshImage()
