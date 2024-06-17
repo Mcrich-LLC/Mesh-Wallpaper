@@ -13,6 +13,7 @@
 		22C5A3F22C20CC9100065B35 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22C5A3F12C20CC9100065B35 /* Preview Assets.xcassets */; };
 		22C5A3F92C20CCE800065B35 /* MeshGeneratorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5A3F82C20CCE800065B35 /* MeshGeneratorViewModel.swift */; };
 		22C5A3FB2C20E03900065B35 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5A3FA2C20E03900065B35 /* SettingsView.swift */; };
+		22C5A3FD2C20E32500065B35 /* MultiColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5A3FC2C20E32500065B35 /* MultiColorPickerView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		22C5A3F12C20CC9100065B35 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		22C5A3F82C20CCE800065B35 /* MeshGeneratorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshGeneratorViewModel.swift; sourceTree = "<group>"; };
 		22C5A3FA2C20E03900065B35 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		22C5A3FC2C20E32500065B35 /* MultiColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiColorPickerView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				22C5A3EC2C20CC8F00065B35 /* MeshGenerator.swift */,
 				22C5A3F82C20CCE800065B35 /* MeshGeneratorViewModel.swift */,
 				22C5A3FA2C20E03900065B35 /* SettingsView.swift */,
+				22C5A3FC2C20E32500065B35 /* MultiColorPickerView.swift */,
 				22C5A3EE2C20CC9100065B35 /* Assets.xcassets */,
 				22C5A3F02C20CC9100065B35 /* Preview Content */,
 			);
@@ -143,6 +146,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22C5A3FD2C20E32500065B35 /* MultiColorPickerView.swift in Sources */,
 				22C5A3F92C20CCE800065B35 /* MeshGeneratorViewModel.swift in Sources */,
 				22C5A3FB2C20E03900065B35 /* SettingsView.swift in Sources */,
 				22C5A3ED2C20CC8F00065B35 /* MeshGenerator.swift in Sources */,

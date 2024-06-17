@@ -40,17 +40,38 @@ struct MeshGenerator: View {
                     viewModel.isShowingSettings.toggle()
                 } label: {
                     Image(systemName: "gear")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 25)
                 }
-
+                Spacer()
+                
                 Button("Reset", action: viewModel.resetGradient)
                     .buttonStyle(.bordered)
                 Button("Randomize", action: viewModel.randomizeGradient)
                     .buttonStyle(.borderedProminent)
+                
+                Spacer()
+                
+                Button {
+                    viewModel.isShowingColorPicker.toggle()
+                } label: {
+                    Circle()
+                        .fill(
+                            AngularGradient(colors: [.red, .yellow, .green, .blue, .purple, .red], center: .center, angle: .zero)
+                        )
+                        .frame(height: 30)
+                }
             }
+            .padding(.horizontal)
         }
         .sheet(isPresented: $viewModel.isShowingSettings) {
             SettingsView()
                 .presentationDetents([.fraction(0.2)])
+        }
+        .sheet(isPresented: $viewModel.isShowingColorPicker) {
+            MultiColorPickerView()
+                .presentationDetents([.medium, .large])
         }
         .environmentObject(viewModel)
     }

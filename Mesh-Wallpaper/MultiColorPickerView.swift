@@ -1,5 +1,5 @@
 //
-//  SettingsView.swift
+//  MultiColorPickerView.swift
 //  Mesh-Wallpaper
 //
 //  Created by Morris Richman on 6/17/24.
@@ -7,17 +7,29 @@
 
 import SwiftUI
 
-struct SettingsView: View {
+struct MultiColorPickerView: View {
     @EnvironmentObject var meshViewModel: MeshGeneratorViewModel
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
         List {
             Section {
-                Toggle("Show Points", isOn: $meshViewModel.isShowingPoints)
+                ForEach($meshViewModel.colors.indices, id: \.self) { colorIndex in
+                    HStack {
+                        Text("Color \(colorIndex+1)")
+                        Spacer()
+                        Picker("", selection: $meshViewModel.colors[colorIndex]) {
+                            ForEach(MeshGeneratorViewModel.colorOptions, id: \.self) { color in
+                                Text("\(color)".capitalized)
+                                    .tag(color)
+                            }
+                        }
+                        .pickerStyle(.menu)
+                    }
+                }
             } header: {
                 HStack {
-                    Text("Settings")
+                    Text("Colors")
                         .font(.title)
                         .bold()
                         .textCase(nil)
@@ -38,5 +50,5 @@ struct SettingsView: View {
 }
 
 #Preview {
-    SettingsView()
+    MultiColorPickerView()
 }

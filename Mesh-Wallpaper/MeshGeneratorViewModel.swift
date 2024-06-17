@@ -51,7 +51,7 @@ class MeshGeneratorViewModel: ObservableObject {
         .indigo,
         .pink,
         .mint
-    ]
+    ].sorted(by: { "\($0)" < "\($1)" })
     
     func updatePoint(_ index: Int, with location: CGPoint, from size: CGSize) {
         // Set x within bounds
