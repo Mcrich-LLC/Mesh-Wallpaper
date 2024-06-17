@@ -22,11 +22,10 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
         isShowingErrorAlert = true
     }
     
+    // MARK: Mesh Properties
     var points: [SIMD2<Float>] {
         overlayPoints.map({ [Float($0.x), Float($0.y)] })
     }
-    
-    @Published var point = CGPoint.zero
     
     @Published var overlayPoints: [CGPoint] = originalOverlayPoints
     
@@ -62,6 +61,7 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
         .mint
     ].sorted(by: { "\($0)" < "\($1)" })
     
+    // MARK: Mesh Methods
     func updatePoint(_ index: Int, with location: CGPoint, from size: CGSize) {
         // Set x within bounds
         if location.x <= 0 {
