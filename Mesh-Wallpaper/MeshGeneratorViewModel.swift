@@ -133,9 +133,7 @@ class MeshGeneratorViewModel: ObservableObject {
                 .aspectRatio(9/16, contentMode: .fit)
         )
         
-        let uiImage = imageRenderer.uiImage
-        
-        guard let uiImage else {
+        guard let uiImage = imageRenderer.uiImage else {
             showError("We could not render an image to save.")
             return
         }
