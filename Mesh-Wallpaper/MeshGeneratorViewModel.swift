@@ -119,15 +119,24 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     
     // MARK: Photo Gallery
     @Published var isShowingSaveSuccessAlert = false
+    @Published var meshImage = UIImage()
     
-    func saveAsPhoto() {
-        let uiImage = VStack {
+    func generateMeshImage() {
+        self.meshImage = meshAsImage()
+    }
+    
+    func meshAsImage() -> UIImage {
+        VStack {
             MeshGradient(width: 3, height: 3, points: self.points, colors: self.colors)
                 .scaleEffect(0.8)
         }
-            .preferredColorScheme(.dark)
-            .frame(width: 900, height: 1600)
-            .snapshot()
+        .preferredColorScheme(.dark)
+        .frame(width: 900, height: 1600)
+        .snapshot()
+    }
+    
+    func saveAsPhoto() {
+        let uiImage = meshAsImage()
         
         UIImageWriteToSavedPhotosAlbum(uiImage, self, #selector(imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
     }

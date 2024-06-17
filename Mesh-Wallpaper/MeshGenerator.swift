@@ -50,12 +50,15 @@ struct MeshGenerator: View {
                     .buttonStyle(.bordered)
                 Button("Randomize", action: viewModel.randomizeGradient)
                     .buttonStyle(.borderedProminent)
-                Button(action: viewModel.saveAsPhoto) {
-                    Image(systemName: "square.and.arrow.down")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 25)
-                }
+//                Button(action: viewModel.saveAsPhoto) {
+//                    Image(systemName: "square.and.arrow.down")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fit)
+//                        .frame(height: 25)
+//                }
+                let image = Image(uiImage: viewModel.meshImage)
+                ShareLink(item: image, preview: SharePreview("Wallpaper", icon: image))
+                    .labelStyle(.iconOnly)
                     .buttonStyle(.borderedProminent)
                 
                 Spacer()
@@ -87,6 +90,9 @@ struct MeshGenerator: View {
         })
         .alert("Success", isPresented: $viewModel.isShowingSaveSuccessAlert, actions: {
             Button("Done") {}
+        })
+        .onChange(of: viewModel.overlayPoints, {
+            viewModel.generateMeshImage()
         })
         .environmentObject(viewModel)
     }
