@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-class MeshGeneratorViewModel: ObservableObject {
+class MeshGeneratorViewModel: NSObject, ObservableObject {
     // Sheets
     @Published var isShowingSettings = false
     @Published var isShowingColorPicker = false
@@ -121,13 +121,6 @@ class MeshGeneratorViewModel: ObservableObject {
     @Published var isShowingSaveSuccessAlert = false
     
     func saveAsPhoto() {
-        Task {
-            await saveAsPhoto()
-        }
-    }
-    
-    @MainActor
-    func saveAsPhoto() async {
         let uiImage = VStack {
             MeshGradient(width: 3, height: 3, points: self.points, colors: self.colors)
                 .scaleEffect(0.8)
@@ -136,11 +129,16 @@ class MeshGeneratorViewModel: ObservableObject {
             .frame(width: 900, height: 1600)
             .snapshot()
         
-        UIImageWriteToSavedPhotosAlbum(uiImage, nil, #selector(imageSaved), nil)
+        UIImageWriteToSavedPhotosAlbum(uiImage, self, #selector(imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
-    @objc private func imageSaved(_ sender: Any?) {
-        isShowingSaveSuccessAlert.toggle()
+    @objc func imageSaved(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
+        if let error = error {
+            // we got back an error!
+            showError(error.localizedDescription)
+        } else {
+            isShowingSaveSuccessAlert.toggle()
+        }
     }
 }
 
