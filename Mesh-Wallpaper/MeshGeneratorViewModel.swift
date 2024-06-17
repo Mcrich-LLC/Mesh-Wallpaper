@@ -13,6 +13,15 @@ class MeshGeneratorViewModel: ObservableObject {
     @Published var isShowingSettings = false
     @Published var isShowingColorPicker = false
     
+    // Show Error Alert
+    @Published var isShowingErrorAlert = false
+    @Published var errorAlertMessage = ""
+    
+    func showError(_ message: String) {
+        errorAlertMessage = message
+        isShowingErrorAlert = true
+    }
+    
     var points: [SIMD2<Float>] {
         overlayPoints.map({ [Float($0.x), Float($0.y)] })
     }
@@ -106,5 +115,35 @@ class MeshGeneratorViewModel: ObservableObject {
                 self.colors = colors
             }
         }
+    }
+    
+    // MARK: Photo Gallery
+    @Published var isShowingSaveSuccessAlert = false
+    
+    func saveAsPhoto() {
+        Task {
+            await saveAsPhoto()
+        }
+    }
+    
+    @MainActor
+    func saveAsPhoto() async {
+        let imageRenderer = ImageRenderer(content:
+            MeshGradient(width: 3, height: 3, points: self.points, colors: self.colors)
+                .aspectRatio(9/16, contentMode: .fit)
+        )
+        
+        let uiImage = imageRenderer.uiImage
+        
+        guard let uiImage else {
+            showError("We could not render an image to save.")
+            return
+        }
+        
+        UIImageWriteToSavedPhotosAlbum(uiImage, nil, #selector(imageSaved), nil)
+    }
+    
+    @objc private func imageSaved(_ sender: Any?) {
+        isShowingSaveSuccessAlert.toggle()
     }
 }

@@ -12,7 +12,7 @@ struct MeshGenerator: View {
     var body: some View {
         VStack {
             GeometryReader { geo in
-                MeshGradient(width: 3, height: 4, points: viewModel.points, colors: viewModel.colors)
+                MeshGradient(width: 3, height: 3, points: viewModel.points, colors: viewModel.colors)
                     .overlay {
                         if viewModel.isShowingPoints {
                             GeometryReader { pointGeo in
@@ -50,6 +50,13 @@ struct MeshGenerator: View {
                     .buttonStyle(.bordered)
                 Button("Randomize", action: viewModel.randomizeGradient)
                     .buttonStyle(.borderedProminent)
+                Button(action: viewModel.saveAsPhoto) {
+                    Image(systemName: "square.and.arrow.down")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(height: 25)
+                }
+                    .buttonStyle(.borderedProminent)
                 
                 Spacer()
                 
@@ -73,6 +80,14 @@ struct MeshGenerator: View {
             MultiColorPickerView()
                 .presentationDetents([.medium, .large])
         }
+        .alert("Uh Oh", isPresented: $viewModel.isShowingErrorAlert, actions: {
+            Button("Ok") {}
+        }, message: {
+            Text(viewModel.errorAlertMessage)
+        })
+        .alert("Success", isPresented: $viewModel.isShowingSaveSuccessAlert, actions: {
+            Button("Done") {}
+        })
         .environmentObject(viewModel)
     }
 }
