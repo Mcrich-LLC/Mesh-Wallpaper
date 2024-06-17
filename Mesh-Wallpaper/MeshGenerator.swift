@@ -22,14 +22,20 @@ struct MeshGenerator: View {
                                     .gesture(
                                         DragGesture()
                                             .onChanged({ gesture in
-                                                viewModel.overlayPoints[pointIndex].x = gesture.location.x/geo.size.width
-                                                viewModel.overlayPoints[pointIndex].y = gesture.location.y/geo.size.height
+                                                viewModel.updatePoint(pointIndex, with: gesture.location, from: geo.size)
                                             })
                                     )
                             }
                         }
                     }
                 }
+                .scaleEffect(0.9)
+            HStack {
+                Button("Reset", action: viewModel.resetGradient)
+                    .buttonStyle(.bordered)
+                Button("Randomize", action: viewModel.randomizeGradient)
+                    .buttonStyle(.borderedProminent)
+            }
         }
     }
 }
