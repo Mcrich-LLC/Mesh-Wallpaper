@@ -128,20 +128,35 @@ class MeshGeneratorViewModel: ObservableObject {
     
     @MainActor
     func saveAsPhoto() async {
-        let imageRenderer = ImageRenderer(content:
+        let uiImage = VStack {
             MeshGradient(width: 3, height: 3, points: self.points, colors: self.colors)
-                .aspectRatio(9/16, contentMode: .fit)
-        )
-        
-        guard let uiImage = imageRenderer.uiImage else {
-            showError("We could not render an image to save.")
-            return
+                .scaleEffect(0.8)
         }
+            .preferredColorScheme(.dark)
+            .frame(width: 900, height: 1600)
+            .snapshot()
         
         UIImageWriteToSavedPhotosAlbum(uiImage, nil, #selector(imageSaved), nil)
     }
     
     @objc private func imageSaved(_ sender: Any?) {
         isShowingSaveSuccessAlert.toggle()
+    }
+}
+
+extension View {
+    func snapshot() -> UIImage {
+        let controller = UIHostingController(rootView: self)
+        let view = controller.view
+        
+        let targetSize = controller.view.intrinsicContentSize
+        view?.bounds = CGRect(origin: .zero, size: targetSize)
+        view?.backgroundColor = .black
+        
+        let renderer = UIGraphicsImageRenderer(size: targetSize)
+        
+        return renderer.image { _ in
+            view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
+        }
     }
 }
