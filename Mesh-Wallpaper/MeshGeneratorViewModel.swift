@@ -49,10 +49,21 @@ class MeshGeneratorViewModel {
     ]
     
     func updatePoint(_ index: Int, with location: CGPoint, from size: CGSize) {
-        if (CGFloat(0)...size.width).contains(location.x) {
+        // Set x within bounds
+        if location.x <= 0 {
+            self.overlayPoints[index].x = 0
+        } else if location.x >= size.width {
+            self.overlayPoints[index].x = 1
+        } else {
             self.overlayPoints[index].x = location.x/size.width
         }
-        if (CGFloat(0)...size.height).contains(location.x) {
+        
+        // Set y within bounds
+        if location.y <= 0 {
+            self.overlayPoints[index].y = 0
+        } else if location.y >= size.height {
+            self.overlayPoints[index].y = 1
+        } else {
             self.overlayPoints[index].y = location.y/size.height
         }
     }
