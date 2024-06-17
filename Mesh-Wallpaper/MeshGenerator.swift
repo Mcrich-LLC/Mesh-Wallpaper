@@ -11,6 +11,11 @@ struct MeshGenerator: View {
     @StateObject var viewModel = MeshGeneratorViewModel()
     var body: some View {
         VStack {
+            Text("Mesh Wallpaper")
+                .font(.largeTitle)
+                .bold()
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
             GeometryReader { geo in
                 MeshGradient(width: 3, height: 3, points: viewModel.points, colors: viewModel.colors)
                     .overlay {
@@ -34,6 +39,7 @@ struct MeshGenerator: View {
                     }
                     .aspectRatio(9/16, contentMode: .fit)
                     .scaleEffect(0.9)
+                    .frame(maxWidth: .infinity, alignment: .center)
             }
             HStack {
                 Button {
