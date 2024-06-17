@@ -50,16 +50,22 @@ struct MeshGenerator: View {
                     .buttonStyle(.bordered)
                 Button("Randomize", action: viewModel.randomizeGradient)
                     .buttonStyle(.borderedProminent)
-//                Button(action: viewModel.saveAsPhoto) {
-//                    Image(systemName: "square.and.arrow.down")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(height: 25)
-//                }
-                let image = Image(uiImage: viewModel.meshImage)
-                ShareLink(item: image, preview: SharePreview("Wallpaper", icon: image))
-                    .labelStyle(.iconOnly)
-                    .buttonStyle(.borderedProminent)
+                HStack {
+                    switch viewModel.shareMode {
+                    case .save:
+                        Button(action: viewModel.saveAsPhoto) {
+                            Image(systemName: "square.and.arrow.down")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(height: 25)
+                        }
+                    case .share:
+                        let image = Image(uiImage: viewModel.meshImage)
+                        ShareLink(item: image, preview: SharePreview("Wallpaper", icon: image))
+                            .labelStyle(.iconOnly)
+                    }
+                }
+                .buttonStyle(.borderedProminent)
                 
                 Spacer()
                 
@@ -77,7 +83,7 @@ struct MeshGenerator: View {
         }
         .sheet(isPresented: $viewModel.isShowingSettings) {
             SettingsView()
-                .presentationDetents([.fraction(0.2)])
+                .presentationDetents([.fraction(0.25)])
         }
         .sheet(isPresented: $viewModel.isShowingColorPicker) {
             MultiColorPickerView()

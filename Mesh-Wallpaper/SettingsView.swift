@@ -15,6 +15,16 @@ struct SettingsView: View {
         List {
             Section {
                 Toggle("Show Points", isOn: $meshViewModel.isShowingPoints)
+                HStack {
+                    Text("Save Mode")
+                    Spacer()
+                    Picker("", selection: $meshViewModel.shareMode) {
+                        ForEach(ShareMode.allCases, id: \.self) { mode in
+                            Text(mode.rawValue.capitalized)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                }
             } header: {
                 HStack {
                     Text("Settings")

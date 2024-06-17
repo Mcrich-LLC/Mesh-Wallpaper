@@ -120,6 +120,7 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     // MARK: Photo Gallery
     @Published var isShowingSaveSuccessAlert = false
     @Published var meshImage = UIImage()
+    @AppStorage("shareMode") var shareMode: ShareMode = .share
     
     func generateMeshImage() {
         self.meshImage = meshAsImage()
@@ -166,4 +167,9 @@ extension View {
             view?.drawHierarchy(in: controller.view.bounds, afterScreenUpdates: true)
         }
     }
+}
+
+enum ShareMode: String, CaseIterable {
+    case save
+    case share
 }
