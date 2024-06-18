@@ -20,23 +20,32 @@ struct DragToDismissModifier: ViewModifier {
                         .onChanged { value in
                             guard isPresented else { return }
                             
+                            guard self.offsetY < 160 else {
+                                stopPresenting()
+                                return
+                            }
+                            
                             self.offsetY = max(0, value.translation.height)
                         }
                         .onEnded { value in
-                            if self.offsetY > 90 {
-                                // Dismiss the view if dragged down more than 90 points
-                                withAnimation {
-                                    self.isPresented = false
-                                    self.offsetY = 0
-                                }
-                            } else {
-                                // Snap back to original position
-                                withAnimation {
-                                    self.offsetY = 0
-                                }
+                            guard self.offsetY < 120 else {
+                                stopPresenting()
+                                return
+                            }
+                            
+                            // Snap back to original position
+                            withAnimation {
+                                self.offsetY = 0
                             }
                         }
                 )
+    }
+    
+    func stopPresenting() {
+        withAnimation {
+            self.isPresented = false
+            self.offsetY = 0
+        }
     }
 }
 
