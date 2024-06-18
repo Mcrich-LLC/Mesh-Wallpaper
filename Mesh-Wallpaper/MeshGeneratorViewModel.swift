@@ -62,16 +62,18 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
         .init(x: 0, y: 1), .init(x: 0.5, y: 1), .init(x: 1, y: 1),
     ]
     
-    @Published var colors: [Color] = {
+    @Published var colors: [Color] = randomColors()
+    
+    static func randomColors() -> [Color] {
         var colors: [Color] = []
         
         while colors.count < 9 {
-            if let color = colorOptions.randomElement(), colors.filter({ $0 == color }).count < 3 {
+            if let color = colorOptions.randomElement(), colors.filter({ $0 == color }).count < 3, ![Color.black, .brown, .gray].contains(color) {
                 colors.append(color)
             }
         }
         return colors
-    }()
+    }
     
     static let colorOptions: [Color] = [
         .purple,
@@ -83,7 +85,11 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
         .cyan,
         .indigo,
         .pink,
-        .mint
+        .mint,
+        .teal,
+        .black,
+        .brown,
+        .gray
     ].sorted(by: { "\($0)" < "\($1)" })
     
     // MARK: Mesh Methods
@@ -131,15 +137,7 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
             
             // Randomize colors if enabled
             if shouldRandomizeColors {
-                var colors: [Color] = []
-                
-                while colors.count < 9 {
-                    if let color = Self.colorOptions.randomElement(), colors.filter({ $0 == color }).count < 3 {
-                        colors.append(color)
-                    }
-                }
-                
-                self.colors = colors
+                self.colors = Self.randomColors()
             }
         }
     }
