@@ -151,6 +151,7 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     }
     
     func meshAsImage() -> UIImage {
+        // Render mesh as photo
         VStack {
             MeshGradient(width: 3, height: 3, points: self.points, colors: self.colors)
                 .scaleEffect(0.8)
@@ -163,9 +164,11 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     func saveAsPhoto() {
         let uiImage = meshAsImage()
         
+        // Save to photos app
         UIImageWriteToSavedPhotosAlbum(uiImage, self, #selector(imageSaved(_:didFinishSavingWithError:contextInfo:)), nil)
     }
     
+    /// Handle UIImageWriteToSavedPhotosAlbum
     @objc func imageSaved(_ image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
         if let error = error {
             // we got back an error!
