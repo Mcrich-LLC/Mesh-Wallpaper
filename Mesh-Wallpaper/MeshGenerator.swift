@@ -41,60 +41,81 @@ struct MeshGenerator: View {
                     .scaleEffect(0.9)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
-            HStack {
-                Button {
-                    viewModel.isShowingSettings.toggle()
-                } label: {
-                    Image(systemName: "gear")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(height: 25)
-                }
-                Spacer()
-                
-                Button("Reset", action: viewModel.resetGradient)
-                    .buttonStyle(.bordered)
-                Button("Randomize", action: viewModel.randomizeGradient)
-                    .buttonStyle(.borderedProminent)
-                HStack {
-                    switch viewModel.shareMode {
-                    case .save:
-                        Button(action: viewModel.saveAsPhoto) {
-                            Image(systemName: "square.and.arrow.down")
+            
+            VStack {
+                if viewModel.isShowingSettings {
+                    SettingsView()
+                        .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
+                } else if viewModel.isShowingColorPicker {
+                    MultiColorPickerView()
+                        .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
+                } else {
+                    HStack {
+                        Button {
+                            withAnimation {
+                                viewModel.isShowingSettings = true
+                            }
+                        } label: {
+                            Image(systemName: "gear")
                                 .resizable()
                                 .aspectRatio(contentMode: .fit)
                                 .frame(height: 25)
                         }
-                    case .share:
-                        let image = Image(uiImage: viewModel.meshImage)
-                        ShareLink(item: image, preview: SharePreview("Wallpaper", icon: image))
-                            .labelStyle(.iconOnly)
+                        Spacer()
+                        
+                        Button("Reset", action: viewModel.resetGradient)
+                            .buttonStyle(.bordered)
+                        Button("Randomize", action: viewModel.randomizeGradient)
+                            .buttonStyle(.borderedProminent)
+                        HStack {
+                            switch viewModel.shareMode {
+                            case .save:
+                                Button(action: viewModel.saveAsPhoto) {
+                                    Image(systemName: "square.and.arrow.down")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height: 25)
+                                }
+                            case .share:
+                                let image = Image(uiImage: viewModel.meshImage)
+                                ShareLink(item: image, preview: SharePreview("Wallpaper", icon: image))
+                                    .labelStyle(.iconOnly)
+                            }
+                        }
+                        .buttonStyle(.borderedProminent)
+                        
+                        Spacer()
+                        
+                        Button {
+                            withAnimation {
+                                viewModel.isShowingColorPicker = true
+                            }
+                        } label: {
+                            Circle()
+                                .fill(
+                                    AngularGradient(colors: [.red, .yellow, .green, .blue, .purple, .red], center: .center, angle: .zero)
+                                )
+                                .frame(height: 30)
+                        }
                     }
-                }
-                .buttonStyle(.borderedProminent)
-                
-                Spacer()
-                
-                Button {
-                    viewModel.isShowingColorPicker.toggle()
-                } label: {
-                    Circle()
-                        .fill(
-                            AngularGradient(colors: [.red, .yellow, .green, .blue, .purple, .red], center: .center, angle: .zero)
-                        )
-                        .frame(height: 30)
+                    .padding(.horizontal)
+                    .transition(.asymmetric(insertion: .push(from: .top), removal: .push(from: .bottom)))
                 }
             }
-            .padding(.horizontal)
+            .padding(.vertical)
+            .padding(.bottom)
+            .scrollContentBackground(.hidden)
+            .background(Color(uiColor: .secondarySystemBackground))
+            .clipShape(UnevenRoundedRectangle(topLeadingRadius: 25, topTrailingRadius: 25))
         }
-        .sheet(isPresented: $viewModel.isShowingSettings) {
-            SettingsView()
-                .presentationDetents([.fraction(0.3)])
-        }
-        .sheet(isPresented: $viewModel.isShowingColorPicker) {
-            MultiColorPickerView()
-                .presentationDetents([.medium, .large])
-        }
+//        .sheet(isPresented: $viewModel.isShowingSettings) {
+//            SettingsView()
+//                .presentationDetents([.fraction(0.3)])
+//        }
+//        .sheet(isPresented: $viewModel.isShowingColorPicker) {
+//            MultiColorPickerView()
+//                .presentationDetents([.medium, .large])
+//        }
         .alert("Uh Oh", isPresented: $viewModel.isShowingErrorAlert, actions: {
             Button("Ok") {}
         }, message: {
@@ -109,6 +130,7 @@ struct MeshGenerator: View {
             viewModel.generateMeshImage()
         })
         .environmentObject(viewModel)
+        .ignoresSafeArea(edges: [.bottom])
     }
 }
 
