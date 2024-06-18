@@ -35,10 +35,8 @@ struct SheetContainer<Content: View>: View {
             }
             ScrollView {
                 VStack {
-                    Group(subviewsOf: content) { subviews in
-                        ForEach(subviewOf: content) { subview in
-                            subview
-                        }
+                    ForEach(subviewOf: content) { subview in
+                        subview
                     }
                 }
                 .padding()
