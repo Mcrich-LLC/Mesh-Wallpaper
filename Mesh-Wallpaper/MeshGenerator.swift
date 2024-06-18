@@ -16,32 +16,31 @@ struct MeshGenerator: View {
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
-            GeometryReader { geo in
-                MeshGradient(width: 3, height: 3, points: viewModel.points, colors: viewModel.colors)
-                    .overlay {
-                        if viewModel.isShowingPoints {
-                            GeometryReader { pointGeo in
-                                ZStack {
-                                    ForEach(viewModel.overlayPoints.indices, id: \.self) { pointIndex in
-                                        Circle()
-                                            .frame(width: 25, height: 25)
-                                            .position(x: viewModel.overlayPoints[pointIndex].x*pointGeo.size.width, y: viewModel.overlayPoints[pointIndex].y*pointGeo.size.height)
-                                            .gesture(
-                                                DragGesture()
-                                                    .onChanged({ gesture in
-                                                        viewModel.updatePoint(pointIndex, with: gesture.location, from: pointGeo.size)
-                                                    })
-                                            )
-                                    }
+            MeshGradientView(width: 3, height: 3, points: viewModel.points, colors: viewModel.colors)
+                .overlay {
+                    if viewModel.isShowingPoints {
+                        GeometryReader { pointGeo in
+                            ZStack {
+                                ForEach(viewModel.overlayPoints.indices, id: \.self) { pointIndex in
+                                    Circle()
+                                        .frame(width: 25, height: 25)
+                                        .position(x: viewModel.overlayPoints[pointIndex].x*pointGeo.size.width, y: viewModel.overlayPoints[pointIndex].y*pointGeo.size.height)
+                                        .gesture(
+                                            DragGesture()
+                                                .onChanged({ gesture in
+                                                    viewModel.updatePoint(pointIndex, with: gesture.location, from: pointGeo.size)
+                                                })
+                                        )
                                 }
                             }
                         }
+                        .padding(1)
                     }
-                    .aspectRatio(viewModel.aspectRatio.width/viewModel.aspectRatio.height, contentMode: .fit)
-                    .scaleEffect(0.9)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-            }
-            .padding(.bottom, -viewModel.sheetOffsetY)
+                }
+                .scaleEffect(0.9)
+                .aspectRatio(viewModel.aspectRatio.width/viewModel.aspectRatio.height, contentMode: .fit)
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                .padding(.bottom, -viewModel.sheetOffsetY)
             
             VStack {
                 if viewModel.isShowingSettings {

@@ -153,7 +153,7 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     func meshAsImage() -> UIImage {
         // Render mesh as photo
         VStack {
-            MeshGradient(width: 3, height: 3, points: self.points, colors: self.colors)
+            MeshGradientView(width: 3, height: 3, points: self.points, colors: self.colors, renderForImage: true)
                 .scaleEffect(0.8)
         }
         .preferredColorScheme(.dark)
