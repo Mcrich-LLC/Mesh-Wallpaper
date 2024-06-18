@@ -107,7 +107,9 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     }
     
     func resetGradient() {
-        overlayPoints = Self.originalOverlayPoints
+        withAnimation {
+            overlayPoints = Self.originalOverlayPoints
+        }
     }
     
     // MARK: Randomization
