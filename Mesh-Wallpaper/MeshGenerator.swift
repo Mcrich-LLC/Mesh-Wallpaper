@@ -110,14 +110,6 @@ struct MeshGenerator: View {
             .clipShape(UnevenRoundedRectangle(topLeadingRadius: 25, topTrailingRadius: 25))
             .dragToDismiss(isPresented: viewModel.sheetDragableBinding, offsetY: $viewModel.sheetOffsetY)
         }
-//        .sheet(isPresented: $viewModel.isShowingSettings) {
-//            SettingsView()
-//                .presentationDetents([.fraction(0.3)])
-//        }
-//        .sheet(isPresented: $viewModel.isShowingColorPicker) {
-//            MultiColorPickerView()
-//                .presentationDetents([.medium, .large])
-//        }
         .alert("Uh Oh", isPresented: $viewModel.isShowingErrorAlert, actions: {
             Button("Ok") {}
         }, message: {
