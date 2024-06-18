@@ -34,4 +34,5 @@ struct MultiColorPickerView: View {
 
 #Preview {
     MultiColorPickerView()
+        .environmentObject(MeshGeneratorViewModel())
 }

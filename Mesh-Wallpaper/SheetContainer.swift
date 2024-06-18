@@ -10,6 +10,7 @@ import SwiftUI
 struct SheetContainer<Content: View>: View {
     let title: String
     @Binding var isShown: Bool
+//    @Binding var offsetY: CGFloat
     @ViewBuilder var content: Content
     
     var body: some View {

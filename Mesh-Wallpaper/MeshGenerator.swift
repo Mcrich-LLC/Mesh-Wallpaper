@@ -41,6 +41,7 @@ struct MeshGenerator: View {
                     .scaleEffect(0.9)
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             }
+            .padding(.bottom, -viewModel.sheetOffsetY)
             
             VStack {
                 if viewModel.isShowingSettings {
@@ -107,6 +108,7 @@ struct MeshGenerator: View {
             .scrollContentBackground(.hidden)
             .background(Color(uiColor: .secondarySystemBackground))
             .clipShape(UnevenRoundedRectangle(topLeadingRadius: 25, topTrailingRadius: 25))
+            .dragToDismiss(isPresented: viewModel.sheetDragableBinding, offsetY: $viewModel.sheetOffsetY)
         }
 //        .sheet(isPresented: $viewModel.isShowingSettings) {
 //            SettingsView()

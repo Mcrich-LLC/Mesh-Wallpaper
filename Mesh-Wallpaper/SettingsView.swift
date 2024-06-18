@@ -54,4 +54,5 @@ struct SettingsView: View {
 
 #Preview {
     SettingsView()
+        .environmentObject(MeshGeneratorViewModel())
 }
