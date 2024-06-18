@@ -124,21 +124,30 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     @Published var shouldRandomizeColors = true
     @Published var shouldRandomizePoints = true
     
-    func randomizeGradient() {
+    func randomizeGradientPoints() {
         withAnimation {
-            
-            // Randomize points if enabled
-            if shouldRandomizePoints {
-                for i in overlayPoints.indices {
-                    overlayPoints[i].y = CGFloat.random(in: 0.1...0.9)
-                    overlayPoints[i].x = CGFloat.random(in: 0.1...0.9)
-                }
+            for i in overlayPoints.indices {
+                overlayPoints[i].y = CGFloat.random(in: 0.1...0.9)
+                overlayPoints[i].x = CGFloat.random(in: 0.1...0.9)
             }
-            
-            // Randomize colors if enabled
-            if shouldRandomizeColors {
-                self.colors = Self.randomColors()
-            }
+        }
+    }
+    
+    func randomizeGradientColors() {
+        withAnimation {
+            self.colors = Self.randomColors()
+        }
+    }
+    
+    func randomizeGradient() {
+        // Randomize points if enabled
+        if shouldRandomizePoints {
+            randomizeGradientPoints()
+        }
+        
+        // Randomize colors if enabled
+        if shouldRandomizeColors {
+            randomizeGradientColors()
         }
     }
     

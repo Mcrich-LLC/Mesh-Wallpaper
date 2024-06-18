@@ -10,8 +10,15 @@ import SwiftUI
 struct MultiColorPickerView: View {
     @EnvironmentObject var meshViewModel: MeshGeneratorViewModel
     
+    
     var body: some View {
-        SheetContainer(title: "Colors", isShown: $meshViewModel.isShowingColorPicker) {
+        SheetContainer(title: "Colors", isShown: $meshViewModel.isShowingColorPicker, header: {
+            Button {
+                meshViewModel.randomizeGradientColors()
+            } label: {
+                Image(systemName: "shuffle")
+            }
+        }) {
             ForEach($meshViewModel.colors.indices, id: \.self) { colorIndex in
                 HStack {
                     Text("Color \(colorIndex+1)")

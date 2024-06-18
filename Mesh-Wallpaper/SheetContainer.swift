@@ -7,11 +7,25 @@
 
 import SwiftUI
 
-struct SheetContainer<Content: View>: View {
+struct SheetContainer<Header: View, Content: View>: View {
     let title: String
     @Binding var isShown: Bool
-//    @Binding var offsetY: CGFloat
-    @ViewBuilder var content: Content
+    private var header: (() -> Header)?
+    private var content: () -> Content
+    
+    init(title: String, isShown: Binding<Bool>, @ViewBuilder header: @escaping () -> Header, @ViewBuilder content: @escaping () -> Content) {
+        self.title = title
+        self._isShown = isShown
+        self.header = header
+        self.content = content
+    }
+     
+    init(title: String, isShown: Binding<Bool>, @ViewBuilder content: @escaping () -> Content) where Header == EmptyView {
+        self.title = title
+        self._isShown = isShown
+        self.header = nil
+        self.content = content
+    }
     
     var body: some View {
         VStack {
@@ -22,6 +36,9 @@ struct SheetContainer<Content: View>: View {
                     .textCase(nil)
                     .foregroundStyle(Color.primary)
                 Spacer()
+                if let header {
+                    header()
+                }
                 Button {
                     withAnimation {
                         isShown = false
@@ -35,7 +52,7 @@ struct SheetContainer<Content: View>: View {
             }
             ScrollView {
                 VStack {
-                    ForEach(subviewOf: content) { subview in
+                    ForEach(subviewOf: content()) { subview in
                         subview
                     }
                 }
