@@ -46,6 +46,6 @@ struct SheetContainer<Content: View>: View {
             }
             .ignoresSafeArea()
         }
-        .padding([.horizontal, .top])
+        .padding(.horizontal)
     }
 }
