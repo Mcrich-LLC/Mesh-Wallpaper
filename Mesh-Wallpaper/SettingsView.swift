@@ -11,7 +11,7 @@ struct SettingsView: View {
     @EnvironmentObject var meshViewModel: MeshGeneratorViewModel
     
     var body: some View {
-        SheetContainer(title: "Settings", isShown: $meshViewModel.isShowingSettings) {
+        SheetContainer(title: "Settings", isShown: $meshViewModel.isShowingSettings, sheetScrollOffset: $meshViewModel.sheetOffsetY) {
             Toggle("Show Points", isOn: $meshViewModel.isShowingPoints)
             
             Divider()

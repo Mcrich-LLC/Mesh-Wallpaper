@@ -22,7 +22,6 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
                 self.isShowingColorPicker = false
             }
         }
-
     }
     
     // Show Error Alert

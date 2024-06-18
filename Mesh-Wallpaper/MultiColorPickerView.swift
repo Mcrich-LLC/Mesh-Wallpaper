@@ -12,7 +12,7 @@ struct MultiColorPickerView: View {
     
     
     var body: some View {
-        SheetContainer(title: "Colors", isShown: $meshViewModel.isShowingColorPicker, header: {
+        SheetContainer(title: "Colors", isShown: $meshViewModel.isShowingColorPicker, sheetScrollOffset: $meshViewModel.sheetOffsetY, header: {
             Button {
                 meshViewModel.randomizeGradientColors()
             } label: {
