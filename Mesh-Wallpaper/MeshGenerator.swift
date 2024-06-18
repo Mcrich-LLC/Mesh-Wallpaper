@@ -128,9 +128,13 @@ struct MeshGenerator: View {
         }, message: {
             Text("You image has been saved to Photos")
         })
-        .onChange(of: viewModel.overlayPoints, {
-            viewModel.generateMeshImage()
-        })
+        .onChange(of: viewModel.overlayPoints) { _, newValue in
+            DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(100)) {
+                guard newValue == viewModel.overlayPoints else { return }
+                
+                viewModel.generateMeshImage()
+            }
+        }
         .environmentObject(viewModel)
         .ignoresSafeArea(edges: [.bottom])
     }
