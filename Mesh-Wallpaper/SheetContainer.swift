@@ -66,6 +66,8 @@ struct SheetContainer<Header: View, Content: View>: View {
                                            value: -$0.frame(in: .named("scroll")).origin.y)
                 })
                 .onPreferenceChange(ViewOffsetKey.self) { (offset: CGFloat) in
+                    // TODO: Implement half way down scroll back up
+                    
                     guard offset < 0, !scrollOffsetIsDisabled else { return }
                     
                     guard sheetScrollOffset < 160 else {
