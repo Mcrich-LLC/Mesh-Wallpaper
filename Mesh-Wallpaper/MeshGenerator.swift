@@ -23,6 +23,13 @@ struct MeshGenerator: View {
                             ZStack {
                                 ForEach(viewModel.overlayPoints.indices, id: \.self) { pointIndex in
                                     Circle()
+                                        .fill(Color.white)
+                                        .overlay(content: {
+                                            if viewModel.isShowingColorPicker {
+                                                Text("\(pointIndex+1)")
+                                                    .foregroundStyle(Color.black)
+                                            }
+                                        })
                                         .frame(width: 25, height: 25)
                                         .position(x: viewModel.overlayPoints[pointIndex].x*pointGeo.size.width, y: viewModel.overlayPoints[pointIndex].y*pointGeo.size.height)
                                         .gesture(
