@@ -66,10 +66,9 @@ struct SheetContainer<Header: View, Content: View>: View {
                                            value: -$0.frame(in: .named("scroll")).origin.y)
                 })
                 .onPreferenceChange(ViewOffsetKey.self) { (offset: CGFloat) in
-//                    print("Offset >> \(offset)")
                     guard offset < 0, !scrollOffsetIsDisabled else { return }
                     
-                    guard sheetScrollOffset < 120 else {
+                    guard sheetScrollOffset < 160 else {
                         hideFromScroll()
                         return
                     }
