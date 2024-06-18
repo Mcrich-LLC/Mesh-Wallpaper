@@ -37,10 +37,13 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     // MARK: Mesh Properties
     @Published var aspectRatio = UIDevice.current.userInterfaceIdiom == .pad ? CGSize(width: 4, height: 3) : CGSize(width: 9, height: 16)
     
-    static let aspectRatioOptions: [CGSize] = [
+    static let portraitAspectRatioOptions: [CGSize] = [
         // Portrait Only, Landscape dynamically handled
         .init(width: 9, height: 16),
         .init(width: 3, height: 4),
+    ]
+    
+    static let squareAspectRatioOptions: [CGSize] = [
         .init(width: 2, height: 2),
     ]
     
