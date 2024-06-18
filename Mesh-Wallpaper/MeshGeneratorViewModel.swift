@@ -54,6 +54,7 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     @Published var overlayPoints: [CGPoint] = originalOverlayPoints
     
     @Published var isShowingPoints = true
+    @AppStorage("isShowingHue") var isShowingHue = true
     
     static let originalOverlayPoints: [CGPoint] = [
         .init(x: 0, y: 0), .init(x: 0.5, y: 0), .init(x: 1, y: 0),
@@ -155,7 +156,7 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     func meshAsImage() -> UIImage {
         // Render mesh as photo
         VStack {
-            MeshGradientView(width: 3, height: 3, points: self.points, colors: self.colors, renderForImage: true)
+            MeshGradientView(width: 3, height: 3, points: self.points, colors: self.colors, hueEnabled: isShowingHue, renderForImage: true)
                 .scaleEffect(0.8)
         }
         .preferredColorScheme(.dark)

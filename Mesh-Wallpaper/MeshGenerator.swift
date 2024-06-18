@@ -16,7 +16,7 @@ struct MeshGenerator: View {
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
-            MeshGradientView(width: 3, height: 3, points: viewModel.points, colors: viewModel.colors)
+            MeshGradientView(width: 3, height: 3, points: viewModel.points, colors: viewModel.colors, hueEnabled: viewModel.isShowingHue)
                 .overlay {
                     if viewModel.isShowingPoints {
                         GeometryReader { pointGeo in

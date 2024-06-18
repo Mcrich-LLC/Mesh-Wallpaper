@@ -16,6 +16,10 @@ struct SettingsView: View {
             
             Divider()
             
+            Toggle("Show Hue", isOn: $meshViewModel.isShowingHue)
+            
+            Divider()
+            
             HStack {
                 Text("Save Mode")
                 Spacer()

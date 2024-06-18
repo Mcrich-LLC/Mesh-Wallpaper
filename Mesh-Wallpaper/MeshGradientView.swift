@@ -12,6 +12,7 @@ struct MeshGradientView/*<Content: View>*/: View {
     let height: Int
     let points: [SIMD2<Float>]
     let colors: [Color]
+    let isHueEnabled: Bool
     let isRenderingAsImage: Bool
     
     var blurRadius: CGFloat {
@@ -20,18 +21,21 @@ struct MeshGradientView/*<Content: View>*/: View {
         return isRenderingAsImage ? radius*2.5 : radius
     }
     
-    init(width: Int, height: Int, points: [SIMD2<Float>], colors: [Color], renderForImage: Bool = false) {
+    init(width: Int, height: Int, points: [SIMD2<Float>], colors: [Color], hueEnabled: Bool = true, renderForImage: Bool = false) {
         self.width = width
         self.height = height
         self.points = points
         self.colors = colors
         self.isRenderingAsImage = renderForImage
+        self.isHueEnabled = hueEnabled
     }
 
     var body: some View {
         ZStack {
-            mesh
-                .blur(radius: blurRadius)
+            if isHueEnabled {
+                mesh
+                    .blur(radius: blurRadius)
+            }
             mesh
         }
     }
