@@ -153,7 +153,7 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     // MARK: Photo Gallery
     @Published var isShowingSaveSuccessAlert = false
     @Published var meshImage = UIImage()
-    @AppStorage("shareMode") var shareMode: ShareMode = .share
+    @AppStorage("shareMode") var shareMode: ShareMode = .save
     
     func generateMeshImage() {
         self.meshImage = meshAsImage()
