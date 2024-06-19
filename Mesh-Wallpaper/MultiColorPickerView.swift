@@ -13,17 +13,15 @@ struct MultiColorPickerView: View {
     
     var body: some View {
         SheetContainer(title: "Colors", isShown: $meshViewModel.isShowingColorPicker, sheetScrollOffset: $meshViewModel.sheetOffsetY, header: {
-            HStack {
-                Picker("", selection: $colorPreset) {
-                    if colorPreset == nil {
-                        Text("Custom")
-                            .tag(ColorPreset?.none)
-                    }
-                    
-                    ForEach(ColorPreset.allCases, id: \.self) { preset in
-                        Text(preset.rawValue.capitalized)
-                            .tag(preset)
-                    }
+            Picker("", selection: $colorPreset) {
+                if colorPreset == nil {
+                    Text("Custom")
+                        .tag(ColorPreset?.none)
+                }
+                
+                ForEach(ColorPreset.allCases, id: \.self) { preset in
+                    Text(preset.rawValue.capitalized)
+                        .tag(preset)
                 }
             }
             
