@@ -11,7 +11,13 @@ struct SettingsView: View {
     @EnvironmentObject var meshViewModel: MeshGeneratorViewModel
     
     var body: some View {
-        SheetContainer(title: "Settings", isShown: $meshViewModel.isShowingSettings, sheetScrollOffset: $meshViewModel.sheetOffsetY) {
+        SheetContainer(title: "Settings", isShown: $meshViewModel.isShowingSettings, sheetScrollOffset: $meshViewModel.sheetOffsetY, header: {
+            Button {
+                meshViewModel.randomizeGradientPoints()
+            } label: {
+                Image(systemName: "shuffle")
+            }
+        }) {
             Toggle("Show Points", isOn: $meshViewModel.isShowingPoints)
             
             Divider()
