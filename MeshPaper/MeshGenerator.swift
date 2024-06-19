@@ -1,6 +1,6 @@
 //
 //  MeshGenerator.swift
-//  Mesh-Wallpaper
+//  MeshPaper
 //
 //  Created by Morris Richman on 6/17/24.
 //
@@ -11,7 +11,7 @@ struct MeshGenerator: View {
     @StateObject var viewModel = MeshGeneratorViewModel()
     var body: some View {
         VStack {
-            Text("Mesh Wallpaper")
+            Text("MeshPaper")
                 .font(.largeTitle)
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)

@@ -1,6 +1,6 @@
 //
 //  DragToDismissModifier.swift
-//  Mesh-Wallpaper
+//  MeshPaper
 //
 //  Created by Morris Richman on 6/17/24.
 //

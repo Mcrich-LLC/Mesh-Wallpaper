@@ -1,6 +1,6 @@
 //
 //  ColorPreset.swift
-//  Mesh-Wallpaper
+//  MeshPaper
 //
 //  Created by Morris Richman on 6/18/24.
 //
