@@ -81,12 +81,16 @@ struct MeshGenerator: View {
                                     Image(systemName: "square.and.arrow.down")
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
-                                        .frame(height: 25)
+                                        .frame(height: 20)
                                 }
                             case .share:
                                 let image = Image(uiImage: viewModel.meshImage)
-                                ShareLink(item: image, preview: SharePreview("Wallpaper", icon: image))
-                                    .labelStyle(.iconOnly)
+                                ShareLink(item: image, preview: SharePreview("Wallpaper", icon: image)) {
+                                    Image(systemName: "square.and.arrow.up")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(height: 20)
+                                }
                             }
                         }
                         .buttonStyle(.borderedProminent)
@@ -105,6 +109,7 @@ struct MeshGenerator: View {
                                 .frame(height: 30)
                         }
                     }
+                    .frame(height: 30)
                     .padding(.horizontal)
                     .transition(.asymmetric(insertion: .push(from: .top), removal: .push(from: .bottom)))
                 }
