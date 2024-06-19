@@ -16,7 +16,7 @@ struct SettingsView: View {
             
             Divider()
             
-            Toggle("Show Hue", isOn: $meshViewModel.isShowingHue)
+            Toggle("Show Glow", isOn: $meshViewModel.isShowingHue)
             
             Divider()
             
