@@ -9,10 +9,24 @@ import SwiftUI
 
 struct MultiColorPickerView: View {
     @EnvironmentObject var meshViewModel: MeshGeneratorViewModel
-    
+    @State var colorPreset: ColorPreset? = nil
     
     var body: some View {
         SheetContainer(title: "Colors", isShown: $meshViewModel.isShowingColorPicker, sheetScrollOffset: $meshViewModel.sheetOffsetY, header: {
+            HStack {
+                Picker("", selection: $colorPreset) {
+                    if colorPreset == nil {
+                        Text("Custom")
+                            .tag(ColorPreset?.none)
+                    }
+                    
+                    ForEach(ColorPreset.allCases, id: \.self) { preset in
+                        Text(preset.rawValue.capitalized)
+                            .tag(preset)
+                    }
+                }
+            }
+            
             Button {
                 meshViewModel.randomizeGradientColors()
             } label: {
@@ -36,6 +50,32 @@ struct MultiColorPickerView: View {
                 }
             }
         }
+        .onAppear {
+            updateColorPreset()
+        }
+        .onChange(of: colorPreset) {
+            setColorPreset()
+        }
+        .onChange(of: meshViewModel.colors) {
+            updateColorPreset()
+        }
+    }
+    
+    func setColorPreset() {
+        guard let colorPreset, colorPreset.colorArray != meshViewModel.colors else { return }
+        
+        withAnimation {
+            meshViewModel.colors = colorPreset.colorArray
+        }
+    }
+    
+    func updateColorPreset() {
+        guard let preset = ColorPreset.allCases.first(where: { $0.colorArray == meshViewModel.colors }) else { 
+            colorPreset = nil
+            return
+        }
+        
+        colorPreset = preset
     }
 }
 

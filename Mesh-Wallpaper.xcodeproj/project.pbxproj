@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2277BBE32C2152740016AD4D /* MeshGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2277BBE22C2152740016AD4D /* MeshGradientView.swift */; };
+		22BB4CB72C22989F00E5E9D5 /* ColorPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB4CB62C22989F00E5E9D5 /* ColorPreset.swift */; };
 		22C5A3EB2C20CC8F00065B35 /* Mesh_WallpaperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5A3EA2C20CC8F00065B35 /* Mesh_WallpaperApp.swift */; };
 		22C5A3ED2C20CC8F00065B35 /* MeshGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5A3EC2C20CC8F00065B35 /* MeshGenerator.swift */; };
 		22C5A3EF2C20CC9100065B35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22C5A3EE2C20CC9100065B35 /* Assets.xcassets */; };
@@ -21,6 +22,7 @@
 
 /* Begin PBXFileReference section */
 		2277BBE22C2152740016AD4D /* MeshGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshGradientView.swift; sourceTree = "<group>"; };
+		22BB4CB62C22989F00E5E9D5 /* ColorPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreset.swift; sourceTree = "<group>"; };
 		22C5A3E72C20CC8F00065B35 /* Mesh-Wallpaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mesh-Wallpaper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		22C5A3EA2C20CC8F00065B35 /* Mesh_WallpaperApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesh_WallpaperApp.swift; sourceTree = "<group>"; };
 		22C5A3EC2C20CC8F00065B35 /* MeshGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshGenerator.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				22C5A3EC2C20CC8F00065B35 /* MeshGenerator.swift */,
 				2277BBE22C2152740016AD4D /* MeshGradientView.swift */,
 				22C5A3F82C20CCE800065B35 /* MeshGeneratorViewModel.swift */,
+				22BB4CB62C22989F00E5E9D5 /* ColorPreset.swift */,
 				22C5A3FA2C20E03900065B35 /* SettingsView.swift */,
 				22C5A3FC2C20E32500065B35 /* MultiColorPickerView.swift */,
 				22C5A3FE2C210BFE00065B35 /* SheetContainer.swift */,
@@ -157,6 +160,7 @@
 			files = (
 				22C5A3FD2C20E32500065B35 /* MultiColorPickerView.swift in Sources */,
 				22C5A3F92C20CCE800065B35 /* MeshGeneratorViewModel.swift in Sources */,
+				22BB4CB72C22989F00E5E9D5 /* ColorPreset.swift in Sources */,
 				22C5A4012C2111B000065B35 /* DragToDismissModifier.swift in Sources */,
 				22C5A3FB2C20E03900065B35 /* SettingsView.swift in Sources */,
 				22C5A3FF2C210BFE00065B35 /* SheetContainer.swift in Sources */,
