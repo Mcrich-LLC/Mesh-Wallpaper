@@ -54,7 +54,7 @@ struct SheetContainer<Header: View, Content: View>: View {
             }
             ScrollView {
                 VStack {
-                    ForEach(subviewOf: content()) { subview in
+                    ForEach(subviews: content()) { subview in
                         subview
                     }
                 }
