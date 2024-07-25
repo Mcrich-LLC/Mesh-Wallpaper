@@ -37,7 +37,7 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		22E73E092C234E3300250859 /* fastlane */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); name = fastlane; path = "../Assignment Manager/fastlane"; sourceTree = "<group>"; };
+		222CEFE32C3115EA0089425D /* fastlane */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = fastlane; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +54,8 @@
 		22C5A3DE2C20CC8F00065B35 = {
 			isa = PBXGroup;
 			children = (
+				222CEFE32C3115EA0089425D /* fastlane */,
 				22C5A3E92C20CC8F00065B35 /* MeshPaper */,
-				22E73E092C234E3300250859 /* fastlane */,
 				22C5A3E82C20CC8F00065B35 /* Products */,
 			);
 			sourceTree = "<group>";
