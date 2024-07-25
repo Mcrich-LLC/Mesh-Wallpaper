@@ -66,9 +66,7 @@ struct SheetContainer<Header: View, Content: View>: View {
                                            value: -$0.frame(in: .named("scroll")).origin.y)
                 })
                 .onPreferenceChange(ViewOffsetKey.self) { (offset: CGFloat) in
-                    // TODO: Implement half way down scroll back up
-                    
-                    guard offset < 0, !scrollOffsetIsDisabled else { return }
+                    guard (offset < 0 || sheetScrollOffset >= 0), !scrollOffsetIsDisabled else { return }
                     
                     guard sheetScrollOffset < 160 else {
                         hideFromScroll()
@@ -76,25 +74,20 @@ struct SheetContainer<Header: View, Content: View>: View {
                     }
                     
                     sheetScrollOffset -= offset
-                    
-                    let fullOffset = sheetScrollOffset
-                    
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-                        if fullOffset == sheetScrollOffset {
-                            if sheetScrollOffset > 120 {
-                                hideFromScroll()
-                            } else {
-                                withAnimation {
-                                    sheetScrollOffset = 0
-                                }
-                            }
-                        }
-                    }
                 }
                 .onChange(of: isShown) {
                     scrollOffsetIsDisabled = !isShown
                 }
             }
+            .onScrollPhaseChange({ oldPhase, newPhase in
+                if [ScrollPhase.idle, .tracking, .decelerating].contains(newPhase) && sheetScrollOffset > 120 { // Hide if at threshold and sheet stopping
+                    hideFromScroll()
+                } else if [ScrollPhase.idle, .tracking].contains(newPhase) { // Else don't hide if stopping and not at threshold
+                    withAnimation {
+                        sheetScrollOffset = 0
+                    }
+                }
+            })
             .coordinateSpace(name: "scroll")
             .ignoresSafeArea()
         }
