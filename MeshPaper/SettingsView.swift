@@ -82,7 +82,23 @@ struct SettingsView: View {
             Divider()
             
             HStack {
-                PhotosPicker(meshViewModel.userImage == nil ? "Insert Image" : "Change Image", selection: $meshViewModel.userImageItem)
+                if meshViewModel.userImageItem != nil {
+                    Button {
+                        meshViewModel.userImageItem = nil
+                    } label: {
+                        Image(systemName: "xmark.circle.fill")
+                    }
+                    .foregroundStyle(.red)
+                }
+                PhotosPicker(selection: $meshViewModel.userImageItem) {
+                    HStack {
+                        if meshViewModel.userImageItem == nil {
+                            Spacer()
+                        }
+                        Text(meshViewModel.userImageItem == nil ? "Insert Image" : "Change Image")
+                        Spacer()
+                    }
+                }
                 
                 if meshViewModel.userImageItem != nil {
                     Spacer()
