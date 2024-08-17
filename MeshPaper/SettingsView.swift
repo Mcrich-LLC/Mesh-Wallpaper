@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct SettingsView: View {
     @EnvironmentObject var meshViewModel: MeshGeneratorViewModel
@@ -40,6 +41,19 @@ struct SettingsView: View {
             Divider()
             
             HStack {
+                Text("Export Image Scale")
+                Spacer()
+                Stepper(value: $meshViewModel.exportImageScale, in: 0...1, step: 0.1) {
+                    HStack {
+                        Spacer()
+                        Text("\(meshViewModel.exportImageScale)".prefix(3))
+                    }
+                }
+            }
+            
+            Divider()
+            
+            HStack {
                 Text("Aspect Ratio")
                 Spacer()
                 Picker("", selection: $meshViewModel.aspectRatio) {
@@ -64,6 +78,10 @@ struct SettingsView: View {
                 }
                 .pickerStyle(.menu)
             }
+                        
+            Divider()
+            
+            PhotosPicker(meshViewModel.userImage == nil ? "Insert Image" : "Change Image", selection: $meshViewModel.userImageItem)
         }
     }
 }

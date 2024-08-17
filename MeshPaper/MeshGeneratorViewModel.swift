@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import PhotosUI
 
 class MeshGeneratorViewModel: NSObject, ObservableObject {
     // Sheets
@@ -23,6 +24,10 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
             }
         }
     }
+    
+    // User Image
+    @Published var userImageItem: PhotosPickerItem?
+    @Published var userImage: Image?
     
     // Show Error Alert
     @Published var isShowingErrorAlert = false
@@ -154,6 +159,7 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     @Published var isShowingSaveSuccessAlert = false
     @Published var meshImage = UIImage()
     @AppStorage("shareMode") var shareMode: ShareMode = .save
+    @AppStorage("exportImageScale") var exportImageScale: Double = 1
     
     func generateMeshImage() {
         self.meshImage = meshAsImage()
@@ -163,7 +169,14 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
         // Render mesh as photo
         VStack {
             MeshGradientView(width: 3, height: 3, points: self.points, colors: self.colors, hueEnabled: isShowingHue, renderForImage: true)
-                .scaleEffect(0.8)
+                .background(content: {
+                    if let image = self.userImage {
+                        image
+                            .resizable()
+                            .scaledToFit()
+                    }
+                })
+                .scaleEffect(exportImageScale)
         }
         .preferredColorScheme(.dark)
         .frame(width: aspectRatio.width*100, height: aspectRatio.height*100)
