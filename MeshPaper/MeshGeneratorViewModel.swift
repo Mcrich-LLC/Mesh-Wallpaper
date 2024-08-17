@@ -159,6 +159,7 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     // MARK: Photo Gallery
     @Published var isShowingSaveSuccessAlert = false
     @Published var meshImage = UIImage()
+    @Published var meshOpacity: CGFloat = 1
     @AppStorage("shareMode") var shareMode: ShareMode = .save
     @AppStorage("exportImageScale") var exportImageScale: Double = 1
     
@@ -170,6 +171,7 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
         // Render mesh as photo
         VStack {
             MeshGradientView(width: 3, height: 3, points: self.points, colors: self.colors, hueEnabled: isShowingHue, renderForImage: true)
+                .opacity(meshOpacity)
                 .background(content: {
                     MeshGradientImageBackground(image: userImage, contentMode: userImageContentMode)
                 })

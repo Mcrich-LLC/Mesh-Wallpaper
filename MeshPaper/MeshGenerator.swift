@@ -18,6 +18,7 @@ struct MeshGenerator: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
             MeshGradientView(width: 3, height: 3, points: viewModel.points, colors: viewModel.colors, hueEnabled: viewModel.isShowingHue)
+                .opacity(viewModel.meshOpacity)
                 .background(content: {
                     MeshGradientImageBackground(image: viewModel.userImage, contentMode: viewModel.userImageContentMode)
                 })

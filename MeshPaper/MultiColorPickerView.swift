@@ -31,20 +31,22 @@ struct MultiColorPickerView: View {
                 Image(systemName: "shuffle")
             }
         }) {
-            ForEach($meshViewModel.colors.indices, id: \.self) { colorIndex in
-                HStack {
-                    Text("Color \(colorIndex+1)")
-                    Spacer()
-                    Picker("", selection: $meshViewModel.colors[colorIndex]) {
-                        ForEach(MeshGeneratorViewModel.colorOptions, id: \.self) { color in
-                            Text("\(color)".capitalized)
-                                .tag(color)
+            Section {
+                ForEach($meshViewModel.colors.indices, id: \.self) { colorIndex in
+                    HStack {
+                        Text("Color \(colorIndex+1)")
+                        Spacer()
+                        Picker("", selection: $meshViewModel.colors[colorIndex]) {
+                            ForEach(MeshGeneratorViewModel.colorOptions, id: \.self) { color in
+                                Text("\(color)".capitalized)
+                                    .tag(color)
+                            }
                         }
+                        .pickerStyle(.menu)
                     }
-                    .pickerStyle(.menu)
-                }
-                if colorIndex != meshViewModel.colors.count-1 {
-                    Divider()
+                    if colorIndex != meshViewModel.colors.count-1 {
+                        Divider()
+                    }
                 }
             }
         }
