@@ -20,7 +20,7 @@ struct MeshGenerator: View {
             MeshGradientView(width: 3, height: 3, points: viewModel.points, colors: viewModel.colors, hueEnabled: viewModel.isShowingHue)
                 .opacity(viewModel.meshOpacity)
                 .background(content: {
-                    MeshGradientImageBackground(image: viewModel.userImage, contentMode: viewModel.userImageContentMode)
+                    MeshGradientImageBackground(image: viewModel.userImage, contentMode: viewModel.userImageContentMode, aspectRatio: viewModel.aspectRatio)
                 })
                 .clipped()
                 .overlay {

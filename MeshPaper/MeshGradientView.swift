@@ -48,10 +48,12 @@ struct MeshGradientView/*<Content: View>*/: View {
 struct MeshGradientImageBackground: View {
     let image: Image?
     let contentMode: ContentMode
+    let aspectRatio: CGSize
     
-    init(image: Image?, contentMode: ContentMode) {
+    init(image: Image?, contentMode: ContentMode, aspectRatio: CGSize) {
         self.image = image
         self.contentMode = contentMode
+        self.aspectRatio = aspectRatio
     }
     
     var body: some View {
@@ -65,6 +67,7 @@ struct MeshGradientImageBackground: View {
                 image
                     .resizable()
                     .scaledToFill()
+                    .aspectRatio(aspectRatio.width/aspectRatio.height, contentMode: .fit)
             }
         }
     }

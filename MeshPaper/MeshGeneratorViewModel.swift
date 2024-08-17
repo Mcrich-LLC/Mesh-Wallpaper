@@ -173,7 +173,7 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
             MeshGradientView(width: 3, height: 3, points: self.points, colors: self.colors, hueEnabled: isShowingHue, renderForImage: true)
                 .opacity(meshOpacity)
                 .background(content: {
-                    MeshGradientImageBackground(image: userImage, contentMode: userImageContentMode)
+                    MeshGradientImageBackground(image: userImage, contentMode: userImageContentMode, aspectRatio: self.aspectRatio)
                 })
                 .clipped()
                 .scaleEffect(exportImageScale)
