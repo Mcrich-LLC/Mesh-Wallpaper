@@ -43,11 +43,16 @@ struct SettingsView: View {
             HStack {
                 Text("Export Image Scale")
                 Spacer()
-                Stepper(value: $meshViewModel.exportImageScale, in: 0...1, step: 0.1) {
+                Stepper(value: $meshViewModel.exportImageScale, in: 0.1...1, step: 0.1) {
                     HStack {
                         Spacer()
                         Text("\(meshViewModel.exportImageScale)".prefix(3))
                     }
+                }
+            }
+            .onChange(of: meshViewModel.exportImageScale) { oldValue, newValue in
+                if let convertedDouble = Double("\(newValue)".prefix(3)), convertedDouble > 1 {
+                    meshViewModel.exportImageScale = oldValue
                 }
             }
             
