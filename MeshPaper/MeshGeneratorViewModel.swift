@@ -28,6 +28,7 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     // User Image
     @Published var userImageItem: PhotosPickerItem?
     @Published var userImage: Image?
+    @Published var userImageContentMode: ContentMode = .fit
     
     // Show Error Alert
     @Published var isShowingErrorAlert = false
@@ -170,12 +171,9 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
         VStack {
             MeshGradientView(width: 3, height: 3, points: self.points, colors: self.colors, hueEnabled: isShowingHue, renderForImage: true)
                 .background(content: {
-                    if let image = self.userImage {
-                        image
-                            .resizable()
-                            .scaledToFit()
-                    }
+                    MeshGradientImageBackground(image: userImage, contentMode: userImageContentMode)
                 })
+                .clipped()
                 .scaleEffect(exportImageScale)
         }
         .preferredColorScheme(.dark)

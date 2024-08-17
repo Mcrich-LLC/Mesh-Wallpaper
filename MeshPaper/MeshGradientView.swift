@@ -44,3 +44,28 @@ struct MeshGradientView/*<Content: View>*/: View {
         MeshGradient(width: width, height: height, points: points, colors: colors)
     }
 }
+
+struct MeshGradientImageBackground: View {
+    let image: Image?
+    let contentMode: ContentMode
+    
+    init(image: Image?, contentMode: ContentMode) {
+        self.image = image
+        self.contentMode = contentMode
+    }
+    
+    var body: some View {
+        if let image {
+            switch contentMode {
+            case .fit:
+                image
+                    .resizable()
+                    .scaledToFit()
+            case .fill:
+                image
+                    .resizable()
+                    .scaledToFill()
+            }
+        }
+    }
+}

@@ -81,7 +81,18 @@ struct SettingsView: View {
                         
             Divider()
             
-            PhotosPicker(meshViewModel.userImage == nil ? "Insert Image" : "Change Image", selection: $meshViewModel.userImageItem)
+            HStack {
+                PhotosPicker(meshViewModel.userImage == nil ? "Insert Image" : "Change Image", selection: $meshViewModel.userImageItem)
+                
+                if meshViewModel.userImageItem != nil {
+                    Spacer()
+                    Picker("", selection: $meshViewModel.userImageContentMode) {
+                        ForEach(ContentMode.allCases, id: \.self) { content in
+                            Text("\(content)".capitalized)
+                        }
+                    }
+                }
+            }
         }
     }
 }

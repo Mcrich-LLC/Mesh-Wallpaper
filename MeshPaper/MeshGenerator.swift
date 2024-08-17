@@ -19,12 +19,9 @@ struct MeshGenerator: View {
                 .padding(.horizontal)
             MeshGradientView(width: 3, height: 3, points: viewModel.points, colors: viewModel.colors, hueEnabled: viewModel.isShowingHue)
                 .background(content: {
-                    if let image = viewModel.userImage {
-                        image
-                            .resizable()
-                            .scaledToFit()
-                    }
+                    MeshGradientImageBackground(image: viewModel.userImage, contentMode: viewModel.userImageContentMode)
                 })
+                .clipped()
                 .overlay {
                     if viewModel.isShowingPoints {
                         GeometryReader { pointGeo in
