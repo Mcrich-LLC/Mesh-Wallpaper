@@ -44,3 +44,31 @@ struct MeshGradientView/*<Content: View>*/: View {
         MeshGradient(width: width, height: height, points: points, colors: colors)
     }
 }
+
+struct MeshGradientImageBackground: View {
+    let image: Image?
+    let contentMode: ContentMode
+    let aspectRatio: CGSize
+    
+    init(image: Image?, contentMode: ContentMode, aspectRatio: CGSize) {
+        self.image = image
+        self.contentMode = contentMode
+        self.aspectRatio = aspectRatio
+    }
+    
+    var body: some View {
+        if let image {
+            switch contentMode {
+            case .fit:
+                image
+                    .resizable()
+                    .scaledToFit()
+            case .fill:
+                image
+                    .resizable()
+                    .scaledToFill()
+                    .aspectRatio(aspectRatio.width/aspectRatio.height, contentMode: .fit)
+            }
+        }
+    }
+}

@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MeshGenerator: View {
     @StateObject var viewModel = MeshGeneratorViewModel()
+
     var body: some View {
         VStack {
             Text("MeshPaper")
@@ -17,6 +18,11 @@ struct MeshGenerator: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.horizontal)
             MeshGradientView(width: 3, height: 3, points: viewModel.points, colors: viewModel.colors, hueEnabled: viewModel.isShowingHue)
+                .opacity(viewModel.meshOpacity)
+                .background(content: {
+                    MeshGradientImageBackground(image: viewModel.userImage, contentMode: viewModel.userImageContentMode, aspectRatio: viewModel.aspectRatio)
+                })
+                .clipped()
                 .overlay {
                     if viewModel.isShowingPoints {
                         GeometryReader { pointGeo in
@@ -136,6 +142,16 @@ struct MeshGenerator: View {
                 guard newValue == viewModel.overlayPoints else { return }
                 
                 viewModel.generateMeshImage()
+            }
+        }
+        .onChange(of: viewModel.userImageItem) {
+            Task {
+                if let loaded = try? await viewModel.userImageItem?.loadTransferable(type: Image.self) {
+                    viewModel.userImage = loaded
+                } else {
+                    viewModel.userImage = nil
+                    print("Failed")
+                }
             }
         }
         .environmentObject(viewModel)

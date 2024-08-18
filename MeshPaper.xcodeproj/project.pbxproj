@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 60;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -36,6 +36,10 @@
 		22E73E012C234DCB00250859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		222CEFE32C3115EA0089425D /* fastlane */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = fastlane; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
 /* Begin PBXFrameworksBuildPhase section */
 		22C5A3E42C20CC8F00065B35 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -50,6 +54,7 @@
 		22C5A3DE2C20CC8F00065B35 = {
 			isa = PBXGroup;
 			children = (
+				222CEFE32C3115EA0089425D /* fastlane */,
 				22C5A3E92C20CC8F00065B35 /* MeshPaper */,
 				22C5A3E82C20CC8F00065B35 /* Products */,
 			);
@@ -300,12 +305,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = NonTintedAppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MeshPaper/Preview Content\"";
 				DEVELOPMENT_TEAM = L7JQRVXU2V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshPaper/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MeshPaper;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Mesh Wallpaper would like to save images to your gallery";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -331,12 +337,13 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = NonTintedAppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"MeshPaper/Preview Content\"";
 				DEVELOPMENT_TEAM = L7JQRVXU2V;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MeshPaper/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = MeshPaper;
 				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Mesh Wallpaper would like to save images to your gallery";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
