@@ -12,7 +12,7 @@ struct MeshGenerator: View {
 
     var body: some View {
         VStack {
-            Text("MeshPaper")
+            Text(verbatim: "MeshPaper")
                 .font(.largeTitle)
                 .bold()
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -32,7 +32,7 @@ struct MeshGenerator: View {
                                         .fill(Color.white)
                                         .overlay(content: {
                                             if viewModel.isShowingColorPicker {
-                                                Text("\(pointIndex+1)")
+                                                Text(verbatim: "\(pointIndex+1)")
                                                     .foregroundStyle(Color.black)
                                             }
                                         })

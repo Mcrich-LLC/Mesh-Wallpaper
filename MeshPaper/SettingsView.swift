@@ -65,19 +65,19 @@ struct SettingsView: View {
                     Picker("", selection: $meshViewModel.aspectRatio) {
                         Section("Portrait") {
                             ForEach(MeshGeneratorViewModel.portraitAspectRatioOptions, id: \.self) { size in
-                                Text("\(Int(size.width))x\(Int(size.height))")
+                                Text(verbatim: "\(Int(size.width))x\(Int(size.height))")
                                     .tag(size)
                             }
                         }
                         Section("Landscape") {
                             ForEach(MeshGeneratorViewModel.portraitAspectRatioOptions.map({ CGSize(width: $0.height, height: $0.width)} ), id: \.self) { size in
-                                Text("\(Int(size.width))x\(Int(size.height))")
+                                Text(verbatim: "\(Int(size.width))x\(Int(size.height))")
                                     .tag(size)
                             }
                         }
                         Section("Square") {
                             ForEach(MeshGeneratorViewModel.squareAspectRatioOptions, id: \.self) { size in
-                                Text("\(Int(size.width))x\(Int(size.height))")
+                                Text(verbatim: "\(Int(size.width))x\(Int(size.height))")
                                     .tag(size)
                             }
                         }
