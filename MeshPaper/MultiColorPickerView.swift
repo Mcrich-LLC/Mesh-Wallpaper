@@ -12,7 +12,7 @@ struct MultiColorPickerView: View {
     @State var colorPreset: ColorPreset? = nil
     
     var body: some View {
-        SheetContainer(title: "Colors", isShown: $meshViewModel.isShowingColorPicker, sheetScrollOffset: $meshViewModel.sheetOffsetY, header: {
+        SheetContainer(title: String(localized: "Colors"), isShown: $meshViewModel.isShowingColorPicker, sheetScrollOffset: $meshViewModel.sheetOffsetY, header: {
             Picker("", selection: $colorPreset) {
                 if colorPreset == nil {
                     Text("Custom")
@@ -20,7 +20,7 @@ struct MultiColorPickerView: View {
                 }
                 
                 ForEach(ColorPreset.allCases, id: \.self) { preset in
-                    Text(preset.rawValue.capitalized)
+                    Text(preset.localized.capitalized)
                         .tag(preset)
                 }
             }
@@ -38,7 +38,8 @@ struct MultiColorPickerView: View {
                         Spacer()
                         Picker("", selection: $meshViewModel.colors[colorIndex]) {
                             ForEach(MeshGeneratorViewModel.colorOptions, id: \.self) { color in
-                                Text("\(color)".capitalized)
+                                Text(color.accessibilityName.capitalized)
+                                
                                     .tag(color)
                             }
                         }

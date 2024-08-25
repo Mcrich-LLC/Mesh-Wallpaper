@@ -67,34 +67,34 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
         .init(x: 0, y: 1), .init(x: 0.5, y: 1), .init(x: 1, y: 1),
     ]
     
-    @Published var colors: [Color] = randomColors()
+    @Published var colors: [UIColor] = randomColors()
     
-    static func randomColors() -> [Color] {
-        var colors: [Color] = []
+    static func randomColors() -> [UIColor] {
+        var colors: [UIColor] = []
         
         while colors.count < 9 {
-            if let color = colorOptions.randomElement(), colors.filter({ $0 == color }).count < 3, ![Color.black, .brown, .gray].contains(color) {
+            if let color = colorOptions.randomElement(), colors.filter({ $0 == color }).count < 3, ![UIColor.black, .systemBrown, .systemGray].contains(color) {
                 colors.append(color)
             }
         }
         return colors
     }
     
-    static let colorOptions: [Color] = [
-        .purple,
-        .blue,
-        .green,
-        .yellow,
-        .red,
-        .orange,
-        .cyan,
-        .indigo,
-        .pink,
-        .mint,
-        .teal,
+    static let colorOptions: [UIColor] = [
+        .systemPurple,
+        .systemBlue,
+        .systemGreen,
+        .systemYellow,
+        .systemRed,
+        .systemOrange,
+        .systemCyan,
+        .systemIndigo,
+        .systemPink,
+        .systemMint,
+        .systemTeal,
         .black,
-        .brown,
-        .gray
+        .systemBrown,
+        .systemGray
     ].sorted(by: { "\($0)" < "\($1)" })
     
     // MARK: Mesh Methods
@@ -221,4 +221,13 @@ extension View {
 enum ShareMode: String, CaseIterable {
     case save
     case share
+    
+    var localized: String {
+        switch self {
+        case .save:
+            String(localized: "save")
+        case .share:
+            String(localized: "share")
+        }
+    }
 }
