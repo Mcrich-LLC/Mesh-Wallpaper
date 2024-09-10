@@ -21,11 +21,11 @@ struct MeshGradientView/*<Content: View>*/: View {
         return isRenderingAsImage ? radius*2.5 : radius
     }
     
-    init(width: Int, height: Int, points: [SIMD2<Float>], colors: [Color], hueEnabled: Bool = true, renderForImage: Bool = false) {
+    init(width: Int, height: Int, points: [SIMD2<Float>], colors: [UIColor], hueEnabled: Bool = true, renderForImage: Bool = false) {
         self.width = width
         self.height = height
         self.points = points
-        self.colors = colors
+        self.colors = colors.map({ Color(uiColor: $0) })
         self.isRenderingAsImage = renderForImage
         self.isHueEnabled = hueEnabled
     }

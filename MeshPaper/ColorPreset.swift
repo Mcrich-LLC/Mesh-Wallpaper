@@ -11,12 +11,21 @@ import SwiftUI
 enum ColorPreset: String, CaseIterable {
     case cool, warm
     
-    var colorArray: [Color] {
+    var localized: String {
         switch self {
         case .cool:
-            return [.cyan, .green, .indigo, .teal, .cyan, .mint, .indigo, .mint, .blue]
+            String(localized: "cool")
         case .warm:
-            return [.pink, .purple, .orange, .teal, .pink, .orange, .mint, .pink, .purple]
+            String(localized: "warm")
+        }
+    }
+    
+    var colorArray: [UIColor] {
+        switch self {
+        case .cool:
+            return [.systemCyan, .systemGreen, .systemIndigo, .systemTeal, .systemCyan, .systemMint, .systemIndigo, .systemMint, .systemBlue]
+        case .warm:
+            return [.systemPink, .systemPurple, .systemOrange, .systemTeal, .systemPink, .systemOrange, .systemMint, .systemPink, .systemPurple]
         }
     }
 }

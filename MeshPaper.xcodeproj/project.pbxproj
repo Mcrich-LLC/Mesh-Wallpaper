@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2271F5252C7A39F5007B0679 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2271F5242C7A39F5007B0679 /* Localizable.xcstrings */; };
 		2277BBE32C2152740016AD4D /* MeshGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2277BBE22C2152740016AD4D /* MeshGradientView.swift */; };
 		22BB4CB72C22989F00E5E9D5 /* ColorPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB4CB62C22989F00E5E9D5 /* ColorPreset.swift */; };
 		22C5A3EB2C20CC8F00065B35 /* Mesh_WallpaperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5A3EA2C20CC8F00065B35 /* Mesh_WallpaperApp.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2271F5242C7A39F5007B0679 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2277BBE22C2152740016AD4D /* MeshGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshGradientView.swift; sourceTree = "<group>"; };
 		22BB4CB62C22989F00E5E9D5 /* ColorPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreset.swift; sourceTree = "<group>"; };
 		22C5A3E72C20CC8F00065B35 /* MeshPaper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MeshPaper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -36,9 +38,9 @@
 		22E73E012C234DCB00250859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFileSystemSynchronizedRootGroup section */
-		222CEFE32C3115EA0089425D /* fastlane */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = fastlane; sourceTree = "<group>"; };
-/* End PBXFileSystemSynchronizedRootGroup section */
+/* Begin PBXGroup section */
+		222CEFE32C3115EA0089425D /* fastlane */ = {isa = PBXGroup; explicitFileTypes = {}; explicitFolders = (); path = fastlane; sourceTree = "<group>"; };
+/* End PBXGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		22C5A3E42C20CC8F00065B35 /* Frameworks */ = {
@@ -83,6 +85,7 @@
 				22C5A4002C2111B000065B35 /* DragToDismissModifier.swift */,
 				22C5A3EE2C20CC9100065B35 /* Assets.xcassets */,
 				22C5A3F02C20CC9100065B35 /* Preview Content */,
+				2271F5242C7A39F5007B0679 /* Localizable.xcstrings */,
 			);
 			path = MeshPaper;
 			sourceTree = "<group>";
@@ -155,6 +158,7 @@
 			files = (
 				22C5A3F22C20CC9100065B35 /* Preview Assets.xcassets in Resources */,
 				22C5A3EF2C20CC9100065B35 /* Assets.xcassets in Resources */,
+				2271F5252C7A39F5007B0679 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +243,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -295,6 +300,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -305,7 +311,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = NonTintedAppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"MeshPaper/Preview Content\"";
 				DEVELOPMENT_TEAM = L7JQRVXU2V;
 				ENABLE_PREVIEWS = YES;
@@ -337,7 +343,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = NonTintedAppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"MeshPaper/Preview Content\"";
 				DEVELOPMENT_TEAM = L7JQRVXU2V;
 				ENABLE_PREVIEWS = YES;

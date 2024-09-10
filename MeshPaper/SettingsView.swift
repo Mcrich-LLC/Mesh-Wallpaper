@@ -12,7 +12,7 @@ struct SettingsView: View {
     @EnvironmentObject var meshViewModel: MeshGeneratorViewModel
     
     var body: some View {
-        SheetContainer(title: "Settings", isShown: $meshViewModel.isShowingSettings, sheetScrollOffset: $meshViewModel.sheetOffsetY, header: {
+        SheetContainer(title: String(localized: "Settings"), isShown: $meshViewModel.isShowingSettings, sheetScrollOffset: $meshViewModel.sheetOffsetY, header: {
             Button {
                 meshViewModel.randomizeGradientPoints()
             } label: {
@@ -33,7 +33,7 @@ struct SettingsView: View {
                     Spacer()
                     Picker("", selection: $meshViewModel.shareMode) {
                         ForEach(ShareMode.allCases, id: \.self) { mode in
-                            Text(mode.rawValue.capitalized)
+                            Text(mode.localized.capitalized)
                         }
                     }
                     .pickerStyle(.menu)
@@ -65,19 +65,19 @@ struct SettingsView: View {
                     Picker("", selection: $meshViewModel.aspectRatio) {
                         Section("Portrait") {
                             ForEach(MeshGeneratorViewModel.portraitAspectRatioOptions, id: \.self) { size in
-                                Text("\(Int(size.width))x\(Int(size.height))")
+                                Text(verbatim: "\(Int(size.width))x\(Int(size.height))")
                                     .tag(size)
                             }
                         }
                         Section("Landscape") {
                             ForEach(MeshGeneratorViewModel.portraitAspectRatioOptions.map({ CGSize(width: $0.height, height: $0.width)} ), id: \.self) { size in
-                                Text("\(Int(size.width))x\(Int(size.height))")
+                                Text(verbatim: "\(Int(size.width))x\(Int(size.height))")
                                     .tag(size)
                             }
                         }
                         Section("Square") {
                             ForEach(MeshGeneratorViewModel.squareAspectRatioOptions, id: \.self) { size in
-                                Text("\(Int(size.width))x\(Int(size.height))")
+                                Text(verbatim: "\(Int(size.width))x\(Int(size.height))")
                                     .tag(size)
                             }
                         }
@@ -110,7 +110,7 @@ struct SettingsView: View {
                         Spacer()
                         Picker("", selection: $meshViewModel.userImageContentMode) {
                             ForEach(ContentMode.allCases, id: \.self) { content in
-                                Text("\(content)".capitalized)
+                                Text(content.localized.capitalized)
                             }
                         }
                     }
@@ -138,4 +138,15 @@ struct SettingsView: View {
 #Preview {
     SettingsView()
         .environmentObject(MeshGeneratorViewModel())
+}
+
+extension ContentMode {
+    var localized: String {
+        switch self {
+        case .fit:
+            String(localized: "fit")
+        case .fill:
+            String(localized: "fill")
+        }
+    }
 }
