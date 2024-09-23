@@ -168,6 +168,7 @@ struct ColorPicker: View {
                             }
                     }
                     .foregroundStyle(color == .black ? Color.accentColor : .white)
+                    .padding(selectedColor == color ? -2 : 0)
                 }
                 Button {
                     isShowingCustomColorSheet.toggle()
@@ -184,6 +185,7 @@ struct ColorPicker: View {
                         }
                 }
                 .foregroundStyle(.white)
+                .padding(!options.contains(selectedColor) ? -2 : 0)
             }
             Button {
                 dismiss()
