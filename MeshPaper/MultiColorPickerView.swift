@@ -97,9 +97,36 @@ struct ColorItem: View {
                     .frame(maxWidth: 50)
             }
         }
-        .sheet(isPresented: $isPickerShown) {
-            ColorPicker(title: title, options: options, selectedColor: $selectedColor)
-                .presentationDetents([.fraction(0.5)])
+        .colorPickerPopoverSheet(isPresented: $isPickerShown, title: title, options: options, selectedColor: $selectedColor)
+    }
+}
+
+private extension View {
+    func colorPickerPopoverSheet(isPresented: Binding<Bool>, title: String, options: [UIColor], selectedColor: Binding<UIColor>) -> some View {
+        modifier(ColorPickerPopoverSheetModifier(isPresented: isPresented, title: title, options: options, selectedColor: selectedColor))
+    }
+}
+
+private struct ColorPickerPopoverSheetModifier: ViewModifier {
+    @Binding var isPresented: Bool
+    
+    let title: String
+    let options: [UIColor]
+    @Binding var selectedColor: UIColor
+    
+    func body(content: Content) -> some View {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            content
+                .sheet(isPresented: $isPresented) {
+                    ColorPicker(title: title, options: options, selectedColor: $selectedColor)
+                        .presentationDetents([.fraction(0.5)])
+                }
+        } else {
+            content
+                .popover(isPresented: $isPresented) {
+                    ColorPicker(title: title, options: options, selectedColor: $selectedColor)
+                        .frame(minWidth: 500, minHeight: 450)
+                }
         }
     }
 }
