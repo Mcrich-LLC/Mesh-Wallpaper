@@ -62,7 +62,7 @@ private struct ColorPickerPopoverModifier: ViewModifier {
                             Button {
                                 isPresented = false
                             } label: {
-                                Image(systemName: "xmark.cirlce")
+                                Image(systemName: "xmark.circle")
                                     .resizable()
                                     .frame(width: 22, height: 22)
                             }

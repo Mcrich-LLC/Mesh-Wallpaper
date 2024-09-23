@@ -5,77 +5,77 @@
     
     
       
-      <testcase classname="fastlane.lanes" name="00: get_version_number" time="0.032745">
+      <testcase classname="fastlane.lanes" name="00: get_version_number" time="0.032152">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="01: get_build_number" time="1.727153">
+      <testcase classname="fastlane.lanes" name="01: get_build_number" time="0.0851">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="02: increment_build_number" time="0.199174">
+      <testcase classname="fastlane.lanes" name="02: increment_build_number" time="0.216578">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="03: get_build_number" time="0.081345">
+      <testcase classname="fastlane.lanes" name="03: get_build_number" time="0.108591">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="04: git commit -a -m &quot;Bumped Build Number&quot;" time="0.024877">
+      <testcase classname="fastlane.lanes" name="04: git commit -a -m &quot;Bumped Build Number&quot;" time="0.055923">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="05: git rev-parse HEAD" time="0.007724">
+      <testcase classname="fastlane.lanes" name="05: git rev-parse HEAD" time="0.008175">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="06: git tag -a &quot;v1.1(5)&quot; -m &quot;&quot;" time="0.012537">
+      <testcase classname="fastlane.lanes" name="06: git tag -a &quot;v1.1(6)&quot; -m &quot;&quot;" time="0.018502">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="07: push_to_git_remote" time="0.855687">
+      <testcase classname="fastlane.lanes" name="07: push_to_git_remote" time="0.77418">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="08: git rev-parse --abbrev-ref HEAD" time="0.010417">
+      <testcase classname="fastlane.lanes" name="08: git rev-parse --abbrev-ref HEAD" time="0.026062">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="09: git checkout beta" time="0.018165">
+      <testcase classname="fastlane.lanes" name="09: git checkout beta" time="0.017279">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="10: git pull origin beta" time="0.501357">
+      <testcase classname="fastlane.lanes" name="10: git pull origin beta" time="0.567424">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="11: git merge --squash -X theirs main" time="0.027621">
+      <testcase classname="fastlane.lanes" name="11: git merge --squash -X theirs main" time="0.029353">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="12: git commit -a -m &quot;1.1 (5)&quot; -m &quot;This is the beta release for 1.1 (5)&quot;" time="0.021131">
+      <testcase classname="fastlane.lanes" name="12: git commit -a -m &quot;1.1 (6)&quot; -m &quot;This is the beta release for 1.1 (6)&quot;" time="0.023211">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="13: push_to_git_remote" time="0.703917">
+      <testcase classname="fastlane.lanes" name="13: push_to_git_remote" time="0.728959">
         
       </testcase>
     
       
-      <testcase classname="fastlane.lanes" name="14: git checkout &quot;main&quot;" time="0.017155">
+      <testcase classname="fastlane.lanes" name="14: git checkout &quot;main&quot;" time="0.016796">
         
       </testcase>
     
