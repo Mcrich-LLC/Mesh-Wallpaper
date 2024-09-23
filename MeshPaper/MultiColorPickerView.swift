@@ -158,7 +158,7 @@ struct ColorPicker: View {
                             selectedColor = color
                         }
                     } label: {
-                        RoundedRectangle(cornerRadius: 10)
+                        RoundedRectangle(cornerRadius: 8)
                             .fill(Color(uiColor: color))
                             .aspectRatio(1, contentMode: .fit)
                             .overlay {
@@ -172,7 +172,7 @@ struct ColorPicker: View {
                 Button {
                     isShowingCustomColorSheet.toggle()
                 } label: {
-                    RoundedRectangle(cornerRadius: 10)
+                    RoundedRectangle(cornerRadius: 8)
                         .fill(
                             AngularGradient(colors: [.red, .yellow, .green, .blue, .purple, .red], center: .center, angle: .zero)
                         )
@@ -191,7 +191,7 @@ struct ColorPicker: View {
                 Text("Done")
                     .frame(maxWidth: .infinity)
             }
-            .buttonBorderShape(.roundedRectangle(radius: 10))
+//            .buttonBorderShape(.roundedRectangle(radius: 10))
             .buttonStyle(.borderedProminent)
             .padding(.top)
         }
