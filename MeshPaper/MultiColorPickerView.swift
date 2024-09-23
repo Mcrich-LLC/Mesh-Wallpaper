@@ -36,14 +36,7 @@ struct MultiColorPickerView: View {
                     HStack {
                         Text("Color \(colorIndex+1)")
                         Spacer()
-                        Picker("", selection: $meshViewModel.colors[colorIndex]) {
-                            ForEach(MeshGeneratorViewModel.colorOptions, id: \.self) { color in
-                                Text(color.accessibilityName.capitalized)
-                                
-                                    .tag(color)
-                            }
-                        }
-                        .pickerStyle(.menu)
+                        ColorItem(title: "Color \(colorIndex+1)", options: MeshGeneratorViewModel.colorOptions, selectedColor: $meshViewModel.colors[colorIndex])
                     }
                     if colorIndex != meshViewModel.colors.count-1 {
                         Divider()
@@ -83,4 +76,135 @@ struct MultiColorPickerView: View {
 #Preview {
     MultiColorPickerView()
         .environmentObject(MeshGeneratorViewModel())
+}
+
+struct ColorItem: View {
+    let title: String
+    let options: [UIColor]
+    @Binding var selectedColor: UIColor
+    
+    @State private var isPickerShown: Bool = false
+    
+    var body: some View {
+        Button {
+            isPickerShown.toggle()
+        } label: {
+            HStack {
+                Image(systemName: "chevron.up.chevron.down")
+                RoundedRectangle(cornerRadius: 10)
+                    .fill(Color(uiColor: selectedColor))
+                    .aspectRatio(1, contentMode: .fit)
+                    .frame(maxWidth: 50)
+            }
+        }
+        .colorPickerPopoverSheet(isPresented: $isPickerShown, title: title, options: options, selectedColor: $selectedColor)
+    }
+}
+
+private extension View {
+    func colorPickerPopoverSheet(isPresented: Binding<Bool>, title: String, options: [UIColor], selectedColor: Binding<UIColor>) -> some View {
+        modifier(ColorPickerPopoverSheetModifier(isPresented: isPresented, title: title, options: options, selectedColor: selectedColor))
+    }
+}
+
+private struct ColorPickerPopoverSheetModifier: ViewModifier {
+    @Binding var isPresented: Bool
+    
+    let title: String
+    let options: [UIColor]
+    @Binding var selectedColor: UIColor
+    
+    func body(content: Content) -> some View {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            content
+                .sheet(isPresented: $isPresented) {
+                    ColorPicker(title: title, options: options, selectedColor: $selectedColor)
+                        .presentationDetents([.fraction(0.5)])
+                }
+        } else {
+            content
+                .popover(isPresented: $isPresented) {
+                    ColorPicker(title: title, options: options, selectedColor: $selectedColor)
+                        .frame(minWidth: 500, minHeight: 450)
+                }
+        }
+    }
+}
+
+struct ColorPicker: View {
+    let title: String
+    let options: [UIColor]
+    @Binding var selectedColor: UIColor
+    @Environment(\.dismiss) var dismiss
+    
+    
+    private let columns: [GridItem] = .init(repeating: GridItem(), count: 5)
+    @State private var isShowingCustomColorSheet: Bool = false
+    
+    var selectedColorAsColorBinding: Binding<Color> {
+        .init(get: { Color(uiColor: selectedColor) }, set: { selectedColor = UIColor($0) })
+    }
+    
+    var body: some View {
+        VStack {
+            Text(title)
+                .font(.largeTitle)
+                .bold()
+                .frame(maxWidth: .infinity, alignment: .leading)
+            LazyVGrid(columns: columns) {
+                ForEach(options, id: \.self) { color in
+                    Button {
+                        withAnimation {
+                            selectedColor = color
+                        }
+                    } label: {
+                        RoundedRectangle(cornerRadius: 10)
+                            .fill(Color(uiColor: color))
+                            .aspectRatio(1, contentMode: .fit)
+                            .overlay {
+                                if selectedColor == color {
+                                    checkmark
+                                }
+                            }
+                    }
+                    .foregroundStyle(color == .black ? Color.accentColor : .white)
+                }
+                Button {
+                    isShowingCustomColorSheet.toggle()
+                } label: {
+                    RoundedRectangle(cornerRadius: 10)
+                        .fill(
+                            AngularGradient(colors: [.red, .yellow, .green, .blue, .purple, .red], center: .center, angle: .zero)
+                        )
+                        .aspectRatio(1, contentMode: .fit)
+                        .overlay {
+                            if !options.contains(selectedColor) {
+                                checkmark
+                            }
+                        }
+                }
+                .foregroundStyle(.white)
+            }
+            Button {
+                dismiss()
+            } label: {
+                Text("Done")
+                    .frame(maxWidth: .infinity)
+            }
+            .buttonBorderShape(.roundedRectangle(radius: 10))
+            .buttonStyle(.borderedProminent)
+            .padding(.top)
+        }
+        .padding(.horizontal)
+        .edgesIgnoringSafeArea(.all)
+        .colorPickerPopover(isPresented: $isShowingCustomColorSheet, selection: selectedColorAsColorBinding)
+    }
+    
+    var checkmark: some View {
+        Image(systemName: "checkmark")
+            .resizable()
+//            .bold()
+            .aspectRatio(contentMode: .fit)
+            .padding()
+    }
 }
