@@ -3,10 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		224CC65A2CA11A110024A263 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 224CC6592CA11A110024A263 /* ColorPickerView.swift */; };
 		2271F5252C7A39F5007B0679 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2271F5242C7A39F5007B0679 /* Localizable.xcstrings */; };
 		2277BBE32C2152740016AD4D /* MeshGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2277BBE22C2152740016AD4D /* MeshGradientView.swift */; };
 		22BB4CB72C22989F00E5E9D5 /* ColorPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB4CB62C22989F00E5E9D5 /* ColorPreset.swift */; };
@@ -22,6 +23,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		224CC6592CA11A110024A263 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		2271F5242C7A39F5007B0679 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		2277BBE22C2152740016AD4D /* MeshGradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshGradientView.swift; sourceTree = "<group>"; };
 		22BB4CB62C22989F00E5E9D5 /* ColorPreset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPreset.swift; sourceTree = "<group>"; };
@@ -38,10 +40,6 @@
 		22E73E012C234DCB00250859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXGroup section */
-		222CEFE32C3115EA0089425D /* fastlane */ = {isa = PBXGroup; explicitFileTypes = {}; explicitFolders = (); path = fastlane; sourceTree = "<group>"; };
-/* End PBXGroup section */
-
 /* Begin PBXFrameworksBuildPhase section */
 		22C5A3E42C20CC8F00065B35 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
@@ -53,6 +51,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		222CEFE32C3115EA0089425D /* fastlane */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = fastlane;
+			sourceTree = "<group>";
+		};
 		22C5A3DE2C20CC8F00065B35 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +88,7 @@
 				22C5A3FC2C20E32500065B35 /* MultiColorPickerView.swift */,
 				22C5A3FE2C210BFE00065B35 /* SheetContainer.swift */,
 				22C5A4002C2111B000065B35 /* DragToDismissModifier.swift */,
+				224CC6592CA11A110024A263 /* ColorPickerView.swift */,
 				22C5A3EE2C20CC9100065B35 /* Assets.xcassets */,
 				22C5A3F02C20CC9100065B35 /* Preview Content */,
 				2271F5242C7A39F5007B0679 /* Localizable.xcstrings */,
@@ -173,6 +179,7 @@
 				22C5A3F92C20CCE800065B35 /* MeshGeneratorViewModel.swift in Sources */,
 				22BB4CB72C22989F00E5E9D5 /* ColorPreset.swift in Sources */,
 				22C5A4012C2111B000065B35 /* DragToDismissModifier.swift in Sources */,
+				224CC65A2CA11A110024A263 /* ColorPickerView.swift in Sources */,
 				22C5A3FB2C20E03900065B35 /* SettingsView.swift in Sources */,
 				22C5A3FF2C210BFE00065B35 /* SheetContainer.swift in Sources */,
 				22C5A3ED2C20CC8F00065B35 /* MeshGenerator.swift in Sources */,
