@@ -173,10 +173,17 @@ struct ColorPicker: View {
                 Button {
                     isShowingCustomColorSheet.toggle()
                 } label: {
-                    RoundedRectangle(cornerRadius: 8)
-                        .fill(
-                            AngularGradient(colors: [.red, .yellow, .green, .blue, .purple, .red], center: .center, angle: .zero)
-                        )
+                    Group {
+                        if !options.contains(selectedColor) {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(Color(uiColor: selectedColor))
+                        } else {
+                            RoundedRectangle(cornerRadius: 8)
+                                .fill(
+                                    AngularGradient(colors: [.red, .yellow, .green, .blue, .purple, .red], center: .center, angle: .zero)
+                                )
+                        }
+                    }
                         .aspectRatio(1, contentMode: .fit)
                         .overlay {
                             if !options.contains(selectedColor) {
