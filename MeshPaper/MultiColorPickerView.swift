@@ -191,6 +191,7 @@ struct ColorPicker: View {
                 Text("Done")
                     .frame(maxWidth: .infinity)
             }
+            .buttonBorderShape(.roundedRectangle(radius: 10))
             .buttonStyle(.borderedProminent)
             .padding(.top)
         }
