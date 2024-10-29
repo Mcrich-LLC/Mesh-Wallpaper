@@ -9,7 +9,7 @@ import SwiftUI
 
 @main
 struct Mesh_WallpaperApp: App {
-    var body: some Scene {
+    var body: some Scene {  
         WindowGroup {
             MeshGenerator()
                 .preferredColorScheme(.dark)
