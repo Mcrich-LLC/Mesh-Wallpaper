@@ -13,7 +13,7 @@ struct SettingsView: View {
     @EnvironmentObject var meshViewModel: MeshGeneratorViewModel
     
     var body: some View {
-        SheetContainer(title: String(localized: "Settings"), isShown: $meshViewModel.isShowingSettings, sheetScrollOffset: $meshViewModel.sheetOffsetY, header: {
+        SheetContainer(title: String(localized: "Settings"), isShown: $meshViewModel.isShowingSettings, header: {
             Button {
                 meshViewModel.randomizeGradientPoints()
             } label: {

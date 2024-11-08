@@ -13,7 +13,6 @@ class MeshGeneratorViewModel: NSObject, ObservableObject {
     // Sheets
     @Published var isShowingSettings = false
     @Published var isShowingColorPicker = false
-    @Published var sheetOffsetY: CGFloat = 0
     var sheetDragableBinding: Binding<Bool> {
         Binding {
             self.isShowingSettings || self.isShowingColorPicker

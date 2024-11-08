@@ -13,7 +13,7 @@ struct MultiColorPickerView: View {
     @State var colorPreset: ColorPreset? = nil
     
     var body: some View {
-        SheetContainer(title: String(localized: "Colors"), isShown: $meshViewModel.isShowingColorPicker, sheetScrollOffset: $meshViewModel.sheetOffsetY, header: {
+        SheetContainer(title: String(localized: "Colors"), isShown: $meshViewModel.isShowingColorPicker, header: {
             Picker("", selection: $colorPreset) {
                 if colorPreset == nil {
                     Text("Custom")
