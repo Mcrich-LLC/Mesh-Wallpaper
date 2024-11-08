@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIIntegratedSheet
 
 struct MeshGenerator: View {
     @StateObject var viewModel = MeshGeneratorViewModel()
@@ -53,80 +54,72 @@ struct MeshGenerator: View {
                 .scaleEffect(0.9)
                 .aspectRatio(viewModel.aspectRatio.width/viewModel.aspectRatio.height, contentMode: .fit)
                 .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
-                .padding(.bottom, -viewModel.sheetOffsetY)
-            
-            VStack {
-                if viewModel.isShowingSettings {
-                    SettingsView()
-                        .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
-                } else if viewModel.isShowingColorPicker {
-                    MultiColorPickerView()
-                        .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
-                } else {
-                    HStack {
-                        Button {
-                            withAnimation {
-                                viewModel.isShowingSettings = true
-                            }
-                        } label: {
-                            Image(systemName: "gear")
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
-                                .frame(height: 25)
+        }
+        .integratedSheet(isPresented: viewModel.sheetDragableBinding, content: {
+            if viewModel.isShowingSettings {
+                SettingsView()
+                    .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
+            } else if viewModel.isShowingColorPicker {
+                MultiColorPickerView()
+                    .transition(.asymmetric(insertion: .push(from: .bottom), removal: .push(from: .top)))
+            } else {
+                HStack {
+                    Button {
+                        withAnimation {
+                            viewModel.isShowingSettings = true
                         }
-                        Spacer()
-                        
-                        Button("Reset", action: viewModel.resetGradient)
-                            .buttonStyle(.bordered)
-                        Button("Randomize", action: viewModel.randomizeGradient)
-                            .buttonStyle(.borderedProminent)
-                        HStack {
-                            switch viewModel.shareMode {
-                            case .save:
-                                Button(action: viewModel.saveAsPhoto) {
-                                    Image(systemName: "square.and.arrow.down")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(height: 20)
-                                }
-                            case .share:
-                                let image = Image(uiImage: viewModel.meshImage)
-                                ShareLink(item: image, preview: SharePreview("Wallpaper", icon: image)) {
-                                    Image(systemName: "square.and.arrow.up")
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(height: 20)
-                                }
-                            }
-                        }
+                    } label: {
+                        Image(systemName: "gear")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .frame(height: 25)
+                    }
+                    Spacer()
+                    
+                    Button("Reset", action: viewModel.resetGradient)
+                        .buttonStyle(.bordered)
+                    Button("Randomize", action: viewModel.randomizeGradient)
                         .buttonStyle(.borderedProminent)
-                        
-                        Spacer()
-                        
-                        Button {
-                            withAnimation {
-                                viewModel.isShowingColorPicker = true
+                    HStack {
+                        switch viewModel.shareMode {
+                        case .save:
+                            Button(action: viewModel.saveAsPhoto) {
+                                Image(systemName: "square.and.arrow.down")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 20)
                             }
-                        } label: {
-                            Circle()
-                                .fill(
-                                    AngularGradient(colors: [.red, .yellow, .green, .blue, .purple, .red], center: .center, angle: .zero)
-                                )
-                                .frame(height: 30)
+                        case .share:
+                            let image = Image(uiImage: viewModel.meshImage)
+                            ShareLink(item: image, preview: SharePreview("Wallpaper", icon: image)) {
+                                Image(systemName: "square.and.arrow.up")
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                                    .frame(height: 20)
+                            }
                         }
                     }
-                    .frame(height: 30)
-                    .padding(.horizontal)
-                    .transition(.asymmetric(insertion: .push(from: .top), removal: .push(from: .bottom)))
+                    .buttonStyle(.borderedProminent)
+                    
+                    Spacer()
+                    
+                    Button {
+                        withAnimation {
+                            viewModel.isShowingColorPicker = true
+                        }
+                    } label: {
+                        Circle()
+                            .fill(
+                                AngularGradient(colors: [.red, .yellow, .green, .blue, .purple, .red], center: .center, angle: .zero)
+                            )
+                            .frame(height: 30)
+                    }
                 }
+                .frame(height: 30)
+                .padding(.horizontal)
+                .transition(.asymmetric(insertion: .push(from: .top), removal: .push(from: .bottom)))
             }
-            .padding(.vertical)
-            .padding(.bottom)
-            .scrollContentBackground(.hidden)
-            .background(Color(uiColor: .secondarySystemBackground))
-            .clipShape(UnevenRoundedRectangle(topLeadingRadius: 25, topTrailingRadius: 25))
-            .dragToDismiss(isPresented: viewModel.sheetDragableBinding, offsetY: $viewModel.sheetOffsetY)
-        }
+        })
         .alert("Uh Oh", isPresented: $viewModel.isShowingErrorAlert, actions: {
             Button("Ok") {}
         }, message: {

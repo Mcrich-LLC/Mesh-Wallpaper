@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SwiftUIIntegratedSheet
 
 struct MultiColorPickerView: View {
     @EnvironmentObject var meshViewModel: MeshGeneratorViewModel
