@@ -11,6 +11,7 @@
 		2271F5252C7A39F5007B0679 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 2271F5242C7A39F5007B0679 /* Localizable.xcstrings */; };
 		2277BBE32C2152740016AD4D /* MeshGradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2277BBE22C2152740016AD4D /* MeshGradientView.swift */; };
 		22B327DD2CDDFB1C00E7EC14 /* SwiftUIIntegratedSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 22B327DC2CDDFB1C00E7EC14 /* SwiftUIIntegratedSheet */; };
+		22B327E02CDE8E7200E7EC14 /* SwiftUIIntegratedSheet in Frameworks */ = {isa = PBXBuildFile; productRef = 22B327DF2CDE8E7200E7EC14 /* SwiftUIIntegratedSheet */; };
 		22BB4CB72C22989F00E5E9D5 /* ColorPreset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22BB4CB62C22989F00E5E9D5 /* ColorPreset.swift */; };
 		22C5A3EB2C20CC8F00065B35 /* Mesh_WallpaperApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5A3EA2C20CC8F00065B35 /* Mesh_WallpaperApp.swift */; };
 		22C5A3ED2C20CC8F00065B35 /* MeshGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22C5A3EC2C20CC8F00065B35 /* MeshGenerator.swift */; };
@@ -43,6 +44,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22B327DD2CDDFB1C00E7EC14 /* SwiftUIIntegratedSheet in Frameworks */,
+				22B327E02CDE8E7200E7EC14 /* SwiftUIIntegratedSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,7 +155,7 @@
 			);
 			mainGroup = 22C5A3DE2C20CC8F00065B35;
 			packageReferences = (
-				22F7A0CF2CDDF02400AD5ABE /* XCLocalSwiftPackageReference "../Packages/SwiftUIIntegratedSheet" */,
+				22B327DE2CDE8E7200E7EC14 /* XCRemoteSwiftPackageReference "SwiftUIIntegratedSheet" */,
 			);
 			productRefGroup = 22C5A3E82C20CC8F00065B35 /* Products */;
 			projectDirPath = "";
@@ -411,10 +413,26 @@
 		};
 /* End XCLocalSwiftPackageReference section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		22B327DE2CDE8E7200E7EC14 /* XCRemoteSwiftPackageReference "SwiftUIIntegratedSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Mcrich23/SwiftUIIntegratedSheet";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
 		22B327DC2CDDFB1C00E7EC14 /* SwiftUIIntegratedSheet */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 22F7A0CF2CDDF02400AD5ABE /* XCLocalSwiftPackageReference "../Packages/SwiftUIIntegratedSheet" */;
+			productName = SwiftUIIntegratedSheet;
+		};
+		22B327DF2CDE8E7200E7EC14 /* SwiftUIIntegratedSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 22B327DE2CDE8E7200E7EC14 /* XCRemoteSwiftPackageReference "SwiftUIIntegratedSheet" */;
 			productName = SwiftUIIntegratedSheet;
 		};
 /* End XCSwiftPackageProductDependency section */

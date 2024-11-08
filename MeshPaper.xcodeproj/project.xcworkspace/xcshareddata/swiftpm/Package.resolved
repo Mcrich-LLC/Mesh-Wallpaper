@@ -1,0 +1,15 @@
+{
+  "originHash" : "a032b43f49777a5bfe6cda5c491b804dfc97d1b430f51f201786bafc1b88013c",
+  "pins" : [
+    {
+      "identity" : "swiftuiintegratedsheet",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Mcrich23/SwiftUIIntegratedSheet",
+      "state" : {
+        "branch" : "main",
+        "revision" : "e6261ef8eaf546066b4ab5d5e50995eba23bc207"
+      }
+    }
+  ],
+  "version" : 3
+}
